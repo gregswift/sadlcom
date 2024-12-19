@@ -1,0 +1,53 @@
+.contact-us-container{
+    display: flex;
+    justify-content: center;
+}
+
+.address-section {
+    margin-right: 200px;
+    .address-line-1 {
+        margin-bottom: 0px;
+    }
+    .address-line-2 {
+        margin-top: 0px;
+    }
+    .google-map {
+        border-style: none;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        border-style: none;
+        border-bottom: black solid;
+        width: 438px;
+        padding: 11px;
+    }
+    textarea {
+        border-style: none;
+        border-bottom: black solid;
+        padding: 11px;
+    }
+    textarea:focus{
+        border-color: black;
+        border: 2px solid black;
+        outline: none;
+    }
+    .label-header {
+        margin-top: 30px;
+    }
+    .form-btn {
+        height: 50px;
+        width: 105px;
+        background-color: #84CBD6;
+        color:  #0E3C74;
+        text-transform: uppercase;
+        border-style: none;
+        font-weight: 700;
+        font-family: "Open Sans";
+        margin: 50px 0px;
+    }
+}
