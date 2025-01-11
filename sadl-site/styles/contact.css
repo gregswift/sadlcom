@@ -1,6 +1,7 @@
 .contact-us-container{
     display: flex;
     justify-content: center;
+    /* margin: 0px auto; */
 }
 
 .address-section {
@@ -14,12 +15,15 @@
     .google-map {
         border-style: none;
     }
+
+    
 }
+
 
 form {
     display: flex;
     flex-direction: column;
-
+    
     input {
         border-style: none;
         border-bottom: black solid;
@@ -49,5 +53,18 @@ form {
         font-weight: 700;
         font-family: "Open Sans";
         margin: 50px 0px;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 1250px) {
+    .contact-us-container{
+        textarea {
+            width: 100%;
+        }
+    }
+}
+@media (min-width: 150px ) and (max-width: 499px) {
+    .address-section {
+        margin-right: 0px;
     }
 }
