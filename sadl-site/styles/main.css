@@ -10,7 +10,7 @@ html,body {
     /* background-color: #EAD8B1; */
 }
 li {
-    list-style: none;
+    list-style: square;
 }
 
 /*Company Logo */
@@ -22,16 +22,6 @@ a:visited {
     color: black;
 }
 
-#site-header{
-   display: flex;
-   justify-content: center;
-   flex-direction: row;
-   align-items: center;
-  /* Add 100 back here if need be*/
-   /* margin:  0px 0px 20px 0px; */
-   margin-bottom: 60px;
-   padding-top: 20px;
-}
 .company-name{
     font-family: "Montserrat";
     font-weight: 700;
@@ -40,25 +30,40 @@ a:visited {
 }
 
 .subheader-name {
+    font-weight: 700;
     text-transform: uppercase;
     font-family: "Open Sans";
     margin-top: 4px;
-    color: #7B7B7C;
+    color: #84CBD6;
     font-size: 14px;
 }
 
 /* Navigation bar  */
+.navigation-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+
+    .branding-container {
+        margin-top: 27px;
+    }
+}
+.mobile-container {
+    display: none;
+}
+
 .navbar-container{
     display: flex;
-    margin-bottom: 0px;
-    margin-left: 285px;
+    margin-bottom: 100px;
+    /* margin-left: 160px; */
     align-items: center;
 
     li {
-       
+       list-style: none;
         font-family: "Open Sans";
-        margin-right: 45px;
-        font-size: 16px;
+        margin-right: 35px;
+        font-size: 14px;
         font-weight: 600;
     }
     .nav-items{
@@ -76,14 +81,15 @@ a:visited {
         align-items: center;
         background-color: #84CBD6;
         border-radius: 36px;
-        width: 200px;
+        width: 175px;
         height: 56px;
         text-align: center;
         /* padding-top: 22px; */
-        font-size: 16px;
-        margin-left: 20px;
+        font-size: 14px;
+        /* margin-left: 35px; */
         box-shadow: 9px 10px 17px -13px rgba(112,105,112,1);
         text-decoration: none;
+        margin-right: 0px;
 
         a {
             color: #001F3F;
@@ -98,33 +104,79 @@ a:visited {
         }
     }
 }
+.mobile-nav-container {
+    display: none;
+    
+}
 
-/* CTA Page  */
+/* Landing Page  */
 .hero-page {
     min-height: 100%;
-    /* position: relative; */
     background-color: #F2F2F2;
+
 }
 
-.cta-container{
+.pages-container {
     display: flex;
-    justify-content: center;
-    /* margin-left: 100px; */
-    /* margin-top: 280px; */
 
-    .cta-header{
-        font-size: 56px;
-        font-family: "Montserrat";
-        align-content: center
+    .hero-page-left, .hero-page-right {
+        flex: 1;
     }
+/* Left page */
+    .hero-page-left {
+        display:flex;
+        flex-direction: column;
+        /* background-color: #11455c; */
+        background: rgb(132,203,214);
+        background: linear-gradient(287deg, rgba(132,203,214,1) 3%, rgba(17,69,92,1) 96%);
+        margin-top: 55px;
+        margin-left: 30px;
+        margin-right: 15px;
+        border-radius: 8px;
+        flex: 1;
 
-    .cta-image{
-        margin-left: 266px;
-        height: 650px;
+        .branding-container {
+            margin: 20px;
+        }
+       .company-name {
+        font-size: 24px;
+        color: #F2F2F2;
+       }
+
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 290px 0px;
+        }
+
+        .cta-header{
+            margin-top: 0px;
+            font-size: 50px;
+            font-family: "Montserrat";
+            align-content: center;
+            color: #ffffff;
+        }
+
+      
+    }
+    
+    /* Right Page*/
+    .hero-page-right {
+        .navbar-container {
+            padding-left: 95px;
+        }
+
+        .cta-image{
+            display: block;
+            margin: auto;
+            margin-left: 266px; 
+        }
     }
 }
 
-/* rest of the home page*/
+
+/* middle home page*/
 .site-body {
     margin-top: 100px;
     background-color: #Fff;
@@ -147,7 +199,7 @@ a:visited {
 
 }
 
-
+/* last home page*/
 .cases-covered-container{
     display:flex;
     justify-content: center;
@@ -186,6 +238,7 @@ a:visited {
     }
 }
 
+/* Additional Pages Reusable CSS */
 footer{
     display: flex;
     justify-content: flex-end;
@@ -210,8 +263,6 @@ footer{
     
 }
 
-/* Additional Page CSS */
-
 .page-title-header{
     height: 250px;
     background-color: #0E3C74;
@@ -222,3 +273,201 @@ footer{
     margin-top: 0px;
 }
 
+.content-body {
+    margin: 20px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+
+    .list-item-paragraph {
+        margin-top: 3px;
+    }
+}
+
+.last-paragraph {
+    line-height: 1.5;
+}
+
+
+@media (min-width: 500px) and (max-width: 1250px) {
+    /* Home Page*/
+    .mobile-nav-container {
+        display: none;
+        
+    }
+    /* Additional Pages */
+    .mobile-nav{
+        display: none;
+    }
+    .pages-container {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .navbar-container {
+            margin-bottom: 20px;
+            justify-content: flex-end;
+    
+            li {
+                font-size: 12px;
+            }
+
+            .call-now-btn {
+                width: 150px;
+                height: 50px;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        }
+        .hero-page-left {
+            margin-left: 15px;
+            margin-top: 25px;
+
+            .cta-header {
+                font-size: 40px;
+            }
+        }
+
+        .hero-page-right {
+
+            .navbar-container {
+                padding-left: 10px;
+                .nav-items {
+                    margin-right: 20px;
+                }
+            }
+            .cta-image {
+                display: none;
+            }
+
+        }
+    }
+
+    /* Reusable Styles faq| profile| contact */
+    .navigation-container {
+        margin-left: 20px;
+        margin-right: 20px;
+        display: flex;
+        /* flex-direction: column; */
+        .branding-container {
+            margin-top: 20px;
+        }
+
+        .navbar-container {
+            padding-left: 0px;
+            margin-bottom: 45px;
+        }
+
+        .company-name {
+            font-size: 18px;
+        }
+        .nav-items {
+            margin-right: 20px;
+        }
+        .call-now-btn {
+            width: 212px;
+            /* margin-right: 10px; */
+        }
+    }
+    .page-title-header {
+       height: 225px;
+       font-size: 30px;
+       padding-left: 40px; 
+       padding-top: 75px
+    }
+
+    .content-body {
+        width: auto;
+        margin: 20px;
+    }
+    .contact-us-container {
+        flex-direction: column;
+        margin: 0px 20px;
+    }
+    
+    
+}
+@media (min-width: 500px) and (max-width: 799px) {
+    .navigation-container {
+        flex-direction: column;
+    }
+}
+@media (min-width: 150px ) and (max-width: 499px) {
+    /* Landing Page Navigation */
+    .mobile-nav-container {
+        display: block;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: #F2F2F2;
+    }
+    .mobile-nav {
+        width: 100%;
+    }
+
+    .mobile-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        margin: 0;
+        list-style: none; 
+    }
+    .mobile-container li {
+        list-style: none;
+    }
+    .mobile-container img {
+        width: 24px;
+        height: 24px
+    }
+    .pages-container {
+        flex-direction: column;
+    }
+    .pages-container .hero-page-left .cta-container {
+        margin: 200px 0px;
+    }
+    .pages-container .hero-page-left .cta-header {
+        font-size: 24px;
+    
+    }
+    
+    .hero-page-right {
+        display: none;
+    }
+
+    /* Additional Pages Navigation */
+    .navigation-container {
+        display: none;
+    }
+    .desktop-nav{
+        display: none;
+    }
+   .content-body{
+        width: auto;
+        margin: 0px 20px;
+   } 
+   .page-title-header{
+       height: 200px;
+       font-size: 30px;
+       padding-left: 40px; 
+       padding-top: 75px
+   }
+
+
+   /* landing page - types of cases */
+   .cases-covered-container .cases-covered-header {
+    font-size: 22px;
+    margin-left: 18px;
+    margin-bottom: 0px;
+
+   }
+
+   /* Contact Page */
+   .contact-us-container {
+    overflow-x: hidden;
+    flex-direction: column;
+    margin: 0px 20px;
+   }
+}
