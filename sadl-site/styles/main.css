@@ -56,51 +56,49 @@ a:visited {
 .navbar-container{
     display: flex;
     margin-bottom: 100px;
-    /* margin-left: 160px; */
     align-items: center;
 
     li {
        list-style: none;
         font-family: "Open Sans";
         margin-right: 35px;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
     }
     .nav-items{
-        /* margin-top: 20px; */
         padding-top: 5px;
-    }
-    .nav-items:hover {
-        border-top: solid #000080;
-        border-top-width: 3px;
+        a{
+            color: #000000;
+        }
 
+        a.active{
+           padding-top: 10px;
+            border-top: solid #000080;
+            border-top-width: 3px;
+        }
     }
+
     .call-now-btn {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #84CBD6;
+        background-color: #634017;
         border-radius: 36px;
         width: 175px;
         height: 56px;
         text-align: center;
-        /* padding-top: 22px; */
         font-size: 14px;
-        /* margin-left: 35px; */
         box-shadow: 9px 10px 17px -13px rgba(112,105,112,1);
         text-decoration: none;
         margin-right: 0px;
+        margin-top: 2px;
 
         a {
-            color: #001F3F;
+            color: #ffffff;
             display:flex;
             align-items: center;
+            letter-spacing: 1px;
 
-        }
-        .phone-svg {
-           height: 35px;
-           width: 35px; 
-           margin-right: 6px;
         }
     }
 }
@@ -112,7 +110,7 @@ a:visited {
 /* Landing Page  */
 .hero-page {
     min-height: 100%;
-    background-color: #F2F2F2;
+    background-color: #edecea;
 
 }
 
@@ -127,7 +125,6 @@ a:visited {
         display:flex;
         flex-direction: column;
         /* background-color: #11455c; */
-        background: rgb(132,203,214);
         background: linear-gradient(287deg, rgba(132,203,214,1) 3%, rgba(17,69,92,1) 96%);
         margin-top: 55px;
         margin-left: 30px;
@@ -157,6 +154,12 @@ a:visited {
             align-content: center;
             color: #ffffff;
         }
+        .texas{
+            color: black;
+        }
+        .attorney{
+            color: #634017;
+        }
 
       
     }
@@ -164,7 +167,13 @@ a:visited {
     /* Right Page*/
     .hero-page-right {
         .navbar-container {
-            padding-left: 95px;
+            padding-left: 125px;
+
+            .nav-items a.active {
+                border-top: solid #000080;
+                border-top-width: 3px;
+    
+            }
         }
 
         .cta-image{
@@ -178,17 +187,17 @@ a:visited {
 
 /* middle home page*/
 .site-body {
-    margin-top: 100px;
+    /* margin-top: 100px; */
     background-color: #Fff;
     max-width: 100%;
     padding: 100px 100px 0px 100px;
-    padding-bottom: 20px; 
+    /* padding-bottom: 20px;  */
 
     .about-me-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
         max-width: fit-content;
         margin-left: auto;
         margin-right: auto;
@@ -200,49 +209,16 @@ a:visited {
 }
 
 /* last home page*/
-.cases-covered-container{
-    display:flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-
     .cases-covered-header{
         font-family: "Montserrat";
-        font-size: 28px;
+        font-size: 24px;
     }
-
-
-    .list-of-cases{
-        display: flex;
-        justify-content: center;
-        margin: 60px 0px;
-        flex-wrap: wrap;
-    
-        .list-item{
-            height: 200px;
-            width: 250px;
-            /* margin:5px; */
-            background-color: #84CBD6;
-            align-content: center;
-            box-shadow: 10px 10px 6px 0px rgba(126,162,168,0.75);
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            /* margin-right: 30px; */
-            margin: 5px 30px 50px 5px;
-            border-radius: 6px;
-        
-        }
-    }
-}
 
 /* Additional Pages Reusable CSS */
 footer{
     display: flex;
     justify-content: flex-end;
-    background-color: #0E3C74;
+    background: linear-gradient(287deg, rgba(132,203,214,1) 3%, rgba(17,69,92,1) 96%);;
     color: #ffffff;
     height: 120px;
     align-items: center;
@@ -250,12 +226,15 @@ footer{
     .footer-item {
         margin-right: 20px;
         font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #000000;
 
         a{
-            color: #ffffff;
+        color: #000000;
+
         }
         a:visited {
-            color: #ffffff;
+            color: #000000;
         }
         
         
@@ -265,7 +244,7 @@ footer{
 
 .page-title-header{
     height: 250px;
-    background-color: #0E3C74;
+    background: linear-gradient(287deg, rgba(132,203,214,1) 3%, rgba(17,69,92,1) 96%);
     padding-top: 90px;
     padding-left: 90px;
     font-size: 42px;
@@ -367,7 +346,6 @@ footer{
         }
         .call-now-btn {
             width: 212px;
-            /* margin-right: 10px; */
         }
     }
     .page-title-header {
@@ -392,6 +370,13 @@ footer{
     .navigation-container {
         flex-direction: column;
     }
+
+    .site-body{
+        padding: 65px 35px 0px 35px;
+    }
+    footer{
+        height:100px;
+       }
 }
 @media (min-width: 150px ) and (max-width: 499px) {
     /* Landing Page Navigation */
@@ -422,19 +407,41 @@ footer{
         width: 24px;
         height: 24px
     }
+    .mobile-container a.active{
+        border-bottom: solid  #634017;
+        border-bottom-width: 3px;
+
+    }
+    .hero-page{
+        min-height: 85%;
+    }
     .pages-container {
         flex-direction: column;
     }
-    .pages-container .hero-page-left .cta-container {
+    /* .pages-container .hero-page-left .cta-container {
         margin: 200px 0px;
-    }
+    } */
     .pages-container .hero-page-left .cta-header {
-        font-size: 24px;
+        font-size: 32px;
+        margin-bottom: 0px;
     
     }
-    
+    .hero-page-left {
+        margin-left: 15px;
+
+        .cta-header{
+            font-size: 20px;
+        }
+    }
+  
     .hero-page-right {
         display: none;
+    }
+    .site-body{
+        padding: 65px 35px 0px 35px;
+        .about-me-container{
+            margin-bottom: 100px;
+        }
     }
 
     /* Additional Pages Navigation */
@@ -449,18 +456,24 @@ footer{
         margin: 0px 20px;
    } 
    .page-title-header{
-       height: 200px;
+       height: 160px;
        font-size: 30px;
        padding-left: 40px; 
-       padding-top: 75px
+       padding-top: 58px;
    }
+   h1.faq{
+        padding-top: 40px;
+    }
+    .last-paragraph {
+        margin-bottom: 45px;
+    }
 
 
    /* landing page - types of cases */
    .cases-covered-container .cases-covered-header {
-    font-size: 22px;
-    margin-left: 18px;
-    margin-bottom: 0px;
+    font-size: 20px;
+    /* margin-left: 18px;
+    margin-bottom: 0px; */
 
    }
 
@@ -469,5 +482,8 @@ footer{
     overflow-x: hidden;
     flex-direction: column;
     margin: 0px 20px;
+   }
+   footer{
+    height:90px;
    }
 }
