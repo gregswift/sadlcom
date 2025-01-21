@@ -1,8 +1,8 @@
 <?php
-// process_form.php
-require 'PHPMailerAutoload.php'; // Include PHPMailer
 
-// Your reCAPTCHA secret key.
+require 'PHPMailerAutoload.php'; 
+
+
 $secretKey = 'reCAPTCHA Secret Key';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $captcha_success = json_decode($verify);
 
         if ($captcha_success->success) {
-            // CAPTCHA is valid; proceed with form processing (e.g., sending email).
             $name = $_POST['name'];
             $email = $_POST['email'];
             $message = $_POST['message'];
