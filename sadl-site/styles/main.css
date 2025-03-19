@@ -44,7 +44,7 @@ a:visited {
     margin-left: 40px;
     margin-right: 40px;
 
-    .branding-container {
+    .logo-container {
         margin-top: 27px;
     }
 }
@@ -72,7 +72,7 @@ a:visited {
 
         a.active{
            padding-top: 10px;
-            border-top: solid #000080;
+            border-top: solid #11455b;
             border-top-width: 3px;
         }
     }
@@ -115,6 +115,11 @@ a:visited {
 
 .pages-container {
     display: flex;
+    flex-direction: column;
+
+    .hero-page-layout {
+        display: flex;
+    }
 
     .hero-page-left, .hero-page-right {
         flex: 1;
@@ -130,7 +135,7 @@ a:visited {
         border-radius: 8px;
         flex: 1;
 
-        .branding-container {
+        .logo-container {
             margin: 20px;
         }
        .company-name {
@@ -168,7 +173,7 @@ a:visited {
             padding-left: 125px;
 
             .nav-items a.active {
-                border-top: solid #000080;
+                border-top: solid #11455C;
                 border-top-width: 3px;
     
             }
@@ -180,7 +185,7 @@ a:visited {
             margin-left: 266px; 
         }
     }
-}
+}e
 
 
 /* middle home page*/
@@ -323,7 +328,7 @@ footer{
         margin-left: 20px;
         margin-right: 20px;
         display: flex;
-        .branding-container {
+        .logo-container {
             margin-top: 20px;
         }
 
