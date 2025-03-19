@@ -1,0 +1,38 @@
+name: Publish Draft
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+    - "Run validation and build checks"
+    branches:
+    - '!main'
+    types:
+    - completed
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    environment: draft
+
+    env:
+      CONTAINER_ENGINE: docker
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Deployment key
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.DEPLOY_KEY }}" | base64 -d  > ~/.ssh/id_rsa
+
+    - name: Publish site
+      run: make publish
+      env:
+        TARGET_SYSTEM: ${{ vars.TARGET_SYSTEM }} # This should be user@host
+        TARGET_PORT: ${{ vars.TARGET_PORT }}
+        TARGET_DIR: ${{ vars.TARGET_DIR }}/${{ github.ref_name }}
+        PUBLISH_DRAFT: true
