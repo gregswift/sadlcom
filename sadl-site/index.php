@@ -12,70 +12,12 @@
   <body>
     <section class="hero-page">
       <div class="pages-container">
-        <div class="landing-page-navigation navigation-container">
-          <div class="logo-container">
-            <a class="company-name" href="index.html">
-              San Antonio Disability Lawyer
-            </a>
-            <p class="subheader-name">Michael F. Archer</p>
-          </div>
-          <nav id="navbar" class="nav">
-            <ul class="navbar-container">
-              <li class="nav-items">
-                <a class="" href="profile.html"> Attorney Profile</a>
-              </li>
-              <li class="nav-items">
-                <a href="faq.html">FAQ's</a>
-              </li>
-              <li class="nav-items">
-                <a href="contact.html">Contact Us</a>
-              </li>
-              <li class="call-now-btn">
-                <a href="tel:+12106994640">
-                  <span>210-699-4640</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="mobile-nav-container">
-          <nav class="mobile-nav">
-            <ul class="mobile-container">
-              <li>
-                <a class="active" href="index.html">
-                  <img src="images/icons/home-page-icon.svg" />
-                </a>
-              </li>
-              <li>
-                <a href="profile.html">
-                  <img src="images/icons/attorney-profile-icon.svg" />
-                </a>
-              </li>
-              <li>
-                <a href="faq.html">
-                  <img src="images/icons/faq-icon.svg" />
-                </a>
-              </li>
-              <li>
-                <a href="contact.html">
-                  <img src="images/icons/contact-form-icon.svg" />
-                </a>
-              </li>
-              <li>
-                <a href="tel:+12106994640">
-                  <img src="images/icons/call-us-icon.svg" />
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
+        <?php include 'navigation.php'; ?>
         <div class="hero-page-layout">
           <div class="hero-page-left">
             <div class="cta-container">
               <h1 class="cta-header">
-                <span class="texas">Texas</span>
+                <span>Texas</span>
                 <span class="social-security">Social Security</span><br />
                 Disability <span class="attorney">Attorney</span>
               </h1>
@@ -136,3 +78,5 @@
     </footer>
   </body>
 </html>
+
+
