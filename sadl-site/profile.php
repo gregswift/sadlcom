@@ -43,32 +43,7 @@
         </ul>
       </nav>
     </div>
-    <div id="navigation" class="navigation-container">
-      <div class="logo-container">
-        <a class="company-name" href="index.html"
-          >San Antonio Disability Lawyer</a
-        >
-        <p class="subheader-name">Michael F. Archer</p>
-      </div>
-      <nav id="navbar" class="desktop-nav">
-        <ul class="navbar-container">
-          <li class="nav-items">
-            <a class="active" href="profile.html"> Attorney Profile</a>
-          </li>
-          <li class="nav-items">
-            <a href="faq.html">FAQ's</a>
-          </li>
-          <li class="nav-items">
-            <a href="contact.html">Contact Us</a>
-          </li>
-          <li class="call-now-btn">
-            <a href="tel:+12106994640">
-              <span>210-699-4640</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <?php include 'navigation.php'; ?>
     <h1 class="page-title-header">Attorney Profile</h1>
     <div class="content-body">
       <h2>Michael F. Archer, Attorney at Law</h2>
