@@ -1,7 +1,6 @@
 .contact-us-container{
     display: flex;
     justify-content: center;
-    /* margin: 0px auto; */
 }
 
 .address-section {
@@ -53,6 +52,7 @@ form {
         font-weight: 700;
         font-family: "Open Sans";
         margin: 50px 0px;
+        border-radius: 5px;
     }
 }
 

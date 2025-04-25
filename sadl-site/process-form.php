@@ -3,7 +3,7 @@
 require 'PHPMailerAutoload.php'; 
 
 
-$secretKey = 'reCAPTCHA Secret Key';
+$secretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

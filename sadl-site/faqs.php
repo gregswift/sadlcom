@@ -12,62 +12,7 @@
           </style>
     </head>
     <body>
-      <div class="mobile-nav-container">
-        <nav class="mobile-nav">
-          <ul class="mobile-container">
-            <li>
-              <a href="index.html">
-                <img src="images/icons/home-page-icon.svg" />
-              </a>
-            </li>
-            <li>
-              <a href="profile.html">
-                <img src="images/icons/attorney-profile-icon.svg" />
-              </a>
-            </li>
-            <li>
-              <a class="active" href="faq.html">
-                <img src="images/icons/faq-icon.svg" />
-              </a>
-            </li>
-            <li>
-              <a  href="contact.html">
-                <img src="images/icons/contact-form-icon.svg" />
-              </a>
-            </li>
-            <li>
-              <a href="tel:+12106994640">
-                <img src="images/icons/call-us-icon.svg" />
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div id="navigation" class="navigation-container">
-        <div class="logo-container">
-              <a class="company-name" href="index.html">San Antonio Disability Lawyer</a>
-              <p class="subheader-name">Michael F. Archer</p>
-        </div>
-        <nav id="navbar" class="desktop-nav">
-              <ul class="navbar-container">
-                <li class="nav-items">
-                  <a href="profile.html"> Attorney Profile</a>
-                </li>
-                <li class="nav-items">
-                  <a class="active" href="faq.html">FAQ's</a>
-                </li>
-                <li class="nav-items">
-                  <a href="contact.html">Contact Us</a>
-                </li>
-                <li class="call-now-btn">
-                  <a href="tel:+12106994640">
-                    <span>210-699-4640</span>
-                  </a>
-                </li>
-              </ul>
-        </nav>
-      </div>
-
+    <?php include 'navigation.php'; ?>
       <div class="faq-page-body">
         <h1 class="page-title-header faq">Social Security Disability Frequently Asked Questions</h1>
         <div class="content-body">
