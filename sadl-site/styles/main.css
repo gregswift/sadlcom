@@ -317,8 +317,9 @@
 
       .hero-page-left .cta-container {
         width: 92vw;
-        margin: 0 auto; /* Center the container */
+        margin: 0 auto;
         height: 60vh;
+        font-size: 40px;
       }
   
       .hero-page-right .cta-image {
@@ -335,11 +336,12 @@
         width: 95vw;
         max-width: 95vw;
         margin: 0 auto;
-      }
-      
-      .hero-page-left .cta-container .cta-header {
         font-size: 36px;
       }
+      
+      /* .hero-page-left .cta-container .cta-header {
+        font-size: 36px;
+      } */
     } 
     
     /* Additional Page : FAQs , etc */
