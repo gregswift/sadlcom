@@ -12,7 +12,7 @@
   <body>
     <section class="hero-page">
       <div class="pages-container">
-        <?php include 'navigation.php'; ?>
+        <?php include 'navigation.php'?>
         <div class="hero-page-layout">
           <div class="hero-page-left">
             <div class="cta-container">
@@ -27,7 +27,7 @@
           <div class="hero-page-right">
             <img
               class="cta-image"
-              src="images/San-Antonio-Website-Image_650x488.png"
+              src="images/san_antonio_png24.png"
             />
           </div>
         </div>
@@ -71,11 +71,7 @@
         </div>
       </div>
     </section>
-    <footer>
-      <p class="footer-item contact-us">
-        <a class="" href="tel:+12106994640"> Contact Us: 210-699-4640</a>
-      </p>
-    </footer>
+    <?php include 'footer.php'?>
   </body>
 </html>
 

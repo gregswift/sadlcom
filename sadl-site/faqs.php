@@ -14,7 +14,10 @@
     <body>
     <?php include 'navigation.php'; ?>
       <div class="faq-page-body">
-        <h1 class="page-title-header faq">Social Security Disability Frequently Asked Questions</h1>
+        <div class="page-title-container">
+          <h1 class="page-title-header faq">Social Security Disability Frequently Asked Questions</h1>
+        </div>
+        
         <div class="content-body">
           <div>
             <h4>
@@ -166,9 +169,7 @@
             </p>
           </div>
         </div>
-        <footer>
-          <p class="footer-item contact-us"><a href="tel:+12106994640"> Contact Us: 210-699-4640</a></p>
-        </footer>
+        <?php include 'footer.php' ?>
     </body>
        
 </html>
