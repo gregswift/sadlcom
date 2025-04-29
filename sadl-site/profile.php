@@ -12,39 +12,10 @@
     </style>
   </head>
   <body>
-    <div class="mobile-nav-container">
-      <nav class="mobile-nav">
-        <ul class="mobile-container">
-          <li>
-            <a href="index.html">
-              <img src="images/icons/home-page-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a class="active" href="profile.html">
-              <img src="images/icons/attorney-profile-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="faq.html">
-              <img src="images/icons/faq-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="contact.html">
-              <img src="images/icons/contact-form-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="tel:+12106994640">
-              <img src="images/icons/call-us-icon.svg" />
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
     <?php include 'navigation.php'; ?>
-    <h1 class="page-title-header">Attorney Profile</h1>
+    <div class="page-title-container">
+      <h1 class="page-title-header">Attorney Profile</h1>
+    </div>
     <div class="content-body">
       <h2>Michael F. Archer, Attorney at Law</h2>
       <div class="info-card">
@@ -107,10 +78,6 @@
         <h4>Born: Yoakum, Texas, May 12, 1951.</h4>
       </div>
     </div>
-    <footer>
-      <p class="footer-item contact-us">
-        <a href="tel:+12106994640">Contact Us: 210-699-4640</a>
-      </p>
-    </footer>
+    <?php include 'footer.php' ?>
   </body>
 </html>

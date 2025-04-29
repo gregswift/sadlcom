@@ -16,17 +16,13 @@
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render=6Ld-37EqAAAAAPMxRxdVdHzTQeAv6TLiot3Pv-YF"></script>
     <script>
-     // Wait for the document to be ready
       document.addEventListener("DOMContentLoaded", function() {
-        // Get the form and button elements
         const form = document.getElementById("client-form");
         const submitButton = document.querySelector(".form-btn");
         
-        // Add click event listener to the submit button
         submitButton.addEventListener("click", function(event) {
-          event.preventDefault(); // Prevent default button behavior
-          
-          // Execute reCAPTCHA verification
+          event.preventDefault(); 
+         
           grecaptcha.ready(function() {
             grecaptcha
               .execute("6Ld-37EqAAAAAPMxRxdVdHzTQeAv6TLiot3Pv-YF", {
@@ -34,7 +30,7 @@
               })
               .then(function(token) {
                 document.getElementById("g-recaptcha-response").value = token;
-                form.submit(); // Submit the form after verification
+                form.submit(); 
               });
           });
         });
@@ -43,39 +39,10 @@
   </head>
 
   <body>
-    <div class="mobile-nav-container">
-      <nav class="mobile-nav">
-        <ul class="mobile-container">
-          <li>
-            <a href="index.html">
-              <img src="images/icons/home-page-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="profile.html">
-              <img src="images/icons/attorney-profile-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="faq.html">
-              <img src="images/icons/faq-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a class="active" href="contact.html">
-              <img src="images/icons/contact-form-icon.svg" />
-            </a>
-          </li>
-          <li>
-            <a href="tel:+12106994640">
-              <img src="images/icons/call-us-icon.svg" />
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
     <?php include 'navigation.php'; ?>
-    <h1 class="page-title-header">Contact Us</h1>
+    <div class="page-title-container">
+      <h1 class="page-title-header">Contact Us</h1>
+    </div>
     <div class="contact-us-container">
       <div class="address-section">
         <p class="address-line-1">1150 N Loop 1604 W, #108-420</p>
@@ -84,8 +51,7 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.9107765654076!2d-98.5128077237558!3d29.606279875147237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c618a479d9bb3%3A0x31a63bb17742b178!2s1150%20N%20Loop%201604%20W%20108%20420%2C%20San%20Antonio%2C%20TX%2078248!5e0!3m2!1sen!2sus!4v1727231668222!5m2!1sen!2sus"
           width="346" height="300"></iframe>
       </div>
-      <div class="form-section">
-        <form id="client-form" action="process-form.php" method="post">
+      <form id="client-form" action="process-form.php" method="post">
           <label class="label-header" for="name">Your Name: (required)</label>
           <input type="text" id="name" name="name" aria-required="true" required />
           <span class="error" aria-live="polite"></span>
@@ -106,9 +72,9 @@
           <button class="g-recaptcha form-btn" data-sitekey="SITE_KEY" data-callback="onSubmit" type="button">
             Send
           </button>
-        </form>
-      </div>
+      </form>
     </div>
+    <?php include "footer.php" ?>
   </body>
 
 </html>
