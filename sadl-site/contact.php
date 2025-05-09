@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
   <head>
     <meta charset="utf-8" />
@@ -39,11 +39,13 @@
   </head>
 
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <?php include 'navigation.php'; ?>
     <div class="page-title-container">
       <h1 class="page-title-header">Contact Us</h1>
     </div>
-    <div class="contact-us-container">
+    <main id="main-content">
+      <div class="contact-us-container">
       <div class="address-section">
         <p class="address-line-1">1150 N Loop 1604 W, #108-420</p>
         <p class="address-line-2">San Antonio, TX 78248</p>
@@ -54,26 +56,27 @@
       <form id="client-form" action="process-form.php" method="post">
           <label class="label-header" for="name">Your Name: (required)</label>
           <input type="text" id="name" name="name" aria-required="true" required />
-          <span class="error" aria-live="polite"></span>
+          <span class="error" id="name-error" aria-live="polite"></span>
 
           <label class="label-header" for="email">
             Your Email: (required)
           </label>
-          <input type="email" id="email" name="email"aria-required="true" required />
+          <input type="email" id="email" name="email" aria-required="true" required />
 
           <label class="label-header" for="subject-line">Subject</label>
           <input type="text" id="subject-line" name="subject"/>
 
           <label class="label-header" for="message">Your Message</label>
-          <textarea  name="message"id="message" rows="10" cols="50"></textarea>
+          <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
           <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
           <input type="hidden" name="action" value="validate_captcha" />
-          <button class="g-recaptcha form-btn" data-sitekey="SITE_KEY" data-callback="onSubmit" type="button">
+          <button class="g-recaptcha form-btn" data-sitekey="SITE_KEY" data-callback="onSubmit" type="submit">
             Send
           </button>
       </form>
-    </div>
+      </div>
+    </main>
     <?php include "footer.php" ?>
   </body>
 

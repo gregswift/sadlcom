@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,17 +12,18 @@
           </style>
     </head>
     <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <?php include 'navigation.php'; ?>
       <div class="faq-page-body">
         <div class="page-title-container">
           <h1 class="page-title-header faq">Social Security Disability Frequently Asked Questions</h1>
         </div>
-        
-        <div class="content-body">
+        <main id="main-content">
+          <div class="content-body">
           <div>
-            <h4>
+            <h2>
               Who is eligible to receive disability benefits under Social Security?
-            </h4>
+            </h2>
             <p>
               Anyone, regardless of age, may receive disability benefits so long as
               his or her disability meets Social Security’s definition of
@@ -59,7 +60,7 @@
             </ul>
           </div>
           <div>
-            <h4>What are the disability requirements for an adult?</h4>
+            <h2>What are the disability requirements for an adult?</h2>
             <p>
               Disability under Social Security law is strictly defined. To be
               eligible for benefits, a person must be unable to do any kind of
@@ -112,9 +113,9 @@
             </ul>
           </div>
           <div>
-            <h4>
+            <h2>
               What is the difference between Social Security disability and SSI?
-            </h4>
+            </h2>
             <p>
               Social Security disability insurance is a program that workers,
               employers and the self-employed pay for with their Social Security
@@ -126,7 +127,7 @@
             </p>
           </div>
           <div>
-            <h4>How do I apply for Social Security disability benefits?</h4>
+            <h2>How do I apply for Social Security disability benefits?</h2>
             <p>
               You can apply by calling your local Social Security Office. A
               representative will schedule an appointment for you. You can apply in
@@ -138,7 +139,7 @@
             </p>
           </div>
           <div>
-            <h4>How does a child qualify for disability benefits?</h4>
+            <h2>How does a child qualify for disability benefits?</h2>
             <p class="last-paragraph">
               Children who are severely disabled may be eligible for monthly
               benefits under one or more of the programs. Both the Social Security
@@ -168,7 +169,8 @@
               parents and the child are within the allowed limits.
             </p>
           </div>
-        </div>
+          </div>
+        </main>
         <?php include 'footer.php' ?>
     </body>
        

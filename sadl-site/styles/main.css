@@ -9,18 +9,29 @@
     margin: 0;
     padding: 0;
     height: 100%;
+    color: #000000;
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+  h1, h2, h3, h4 {
+    padding: 0;
+    margin: 0;
   }
   
   li {
     list-style: square;
+    font-size: 1.6rem;
   }
   
   a {
     text-decoration: none;
   }
-  
-  a:visited {
-    color: black;
+
+  p {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
   }
   
   .mobile-nav-container{
@@ -31,46 +42,70 @@
   .company-name {
     font-family: "Montserrat";
     font-weight: 700;
-    font-size: 28px;
-    margin-bottom: 0px;
+    font-size: 2.2rem;
+    margin-bottom: 0.0rem;
+    color: #000000;
   }
   
   .subheader-name {
     font-weight: 700;
     text-transform: uppercase;
-    font-family: "Open Sans";
-    margin-top: 4px;
-    color: #1d84b1;
-    font-size: 14px;
+    margin-top: 0.4rem;
+    color: #125f68;
+    font-size: 1.4rem;
   }
+/* Accessibility skip to main content */
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: 100;
+    background-color: #000;
+    color: #fff;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .skip-link:focus {
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+  }
+  
   
   /* Navigation bar */
   .site-header {
+    padding-top: 1.2rem;
     display: flex;
     justify-content: space-between;
     margin: 0 3vw;
   }
   
   .logo-container {
-    margin-top: 27px;
+    margin-top: 2.7rem;
   }
   
   .navbar-container {
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 10.0rem;
     align-items: center;
   }
-  
+ 
   .navbar-container li {
     list-style: none;
     font-family: "Open Sans";
-    margin-right: 35px;
-    font-size: 15px;
+    margin-right: 3.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
   }
   
   .nav-items {
-    padding-top: 5px;
+    padding-top: 0.5rem;
   }
   
   .nav-items a {
@@ -78,9 +113,9 @@
   }
   
   .nav-items a.active {
-    padding-top: 10px;
+    padding-top: 1.0rem;
     border-top: solid #1d84b1;
-    border-top-width: 3px;
+    border-top-width: 0.3rem;
   }
   
   .navbar-container .call-now-btn {
@@ -88,32 +123,32 @@
     justify-content: center;
     align-items: center;
     background-color: #bfa16f;
-    border-radius: 36px;
-    width: 175px;
-    height: 56px;
+    border-radius: 3.6rem;
+    width: 17.5rem;
+    height: 5.6rem;
     text-align: center;
-    font-size: 14px;
-    box-shadow: 9px 10px 17px -13px rgba(112,105,112,1);
+    font-size: 1.4rem;
+    box-shadow: 0.9rem 1.0rem 1.7rem -1.3rem rgba(112,105,112,1);
     text-decoration: none;
-    margin-right: 0px;
-    margin-top: 2px;
+    margin-right: 0.0rem;
+    margin-top: 0.2rem;
   }
   
   .call-now-btn a {
-    color: #ffffff;
+    color: #000000;
     display: flex;
     align-items: center;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
   }
 
   /* Landing Page */
   .hero-page {
     min-height: 100%;
     background: 
-      radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px),
-      radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px);
-    background-size: 10px 10px;
-    background-position: 0 0, 5px 5px;
+      radial-gradient(circle, rgba(0,0,0,0.02) 0.1rem, transparent 0.1rem),
+      radial-gradient(circle, rgba(0,0,0,0.02) 0.1rem, transparent 0.1rem);
+    background-size: 1.0rem 1.0rem;
+    background-position: 0 0, 0.5rem 0.5rem;
     background-color: #efede8;
   }
   
@@ -124,6 +159,11 @@
   
   .hero-page-layout {
     display: flex;
+    background: #042945;
+    border-radius: 0.8rem;
+    width: 93vw;
+    min-height: 78vh;
+    margin: 0 auto;
   }
   
   .hero-page-left, .hero-page-right {
@@ -132,17 +172,14 @@
   
   .hero-page-left {
     display: flex;
-    flex-direction: column;
-    margin-left: 30px;
-    margin-right: 15px;
   }
   
   .hero-page-left .logo-container {
-    margin: 20px;
+    margin: 2.0rem;
   }
   
   .hero-page-left .company-name {
-    font-size: 24px;
+    font-size: 2.4rem;
     color: #F2F2F2;
   }
   
@@ -150,26 +187,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(9, 53, 84);
-    border-radius: 8px;
-    width: 100%;
     min-height: 76vh;
-    box-sizing: border-box;
+    margin:auto;
   }
   
   .cta-header {
-    margin-top: 0px;
-    font-size: 50px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.0rem;
+    font-size: 5.0rem;
     font-family: "Montserrat";
     align-content: center;
     color: #ffffff;
+    width: 32vw;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .attorney {
     color: #bfa16f;
   }
   
-  .hero-page-right {
+  .hero-page-left {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,29 +216,36 @@
   }
   
   .hero-page-right .navbar-container {
-    padding-left: 125px;
+    padding-left: 12.5rem;
   }
   
   .hero-page-right .navbar-container .nav-items a.active {
     border-top: solid #11455C;
-    border-top-width: 3px;
+    border-top-width: 0.3rem;
   }
   
-  .hero-page-right .cta-image {
+  .hero-page-left .cta-image {
     display: block;
     margin: 0 auto;
-    width: clamp(400px, 30vw, 489px);
+    width: clamp(40.0rem, 30vw, 48.9rem);
     height: auto;
     aspect-ratio: 489 / 735;
     object-fit: cover;
+    margin-top: 2.2rem;
   }
-
+  
+  .cta-image {
+    width: clamp(20rem, 20vw, 32.1rem);
+    height: clamp(30rem, 30vw, 48.6rem);
+  }
+  
+  
   
   /* Home Page Content */
   .site-body {
       background-color: #fff;
       max-width: 100%;
-      padding: 100px;
+      padding: 10.0rem;
     }
     
     .about-me-container {
@@ -210,44 +255,53 @@
         max-width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        width: 890px;
-        font-size: 18px;
+        width: 89.0rem;
+        font-size: 1.8rem;
     }
     
     /* Home Page Cases Content*/
     .cases-covered-header {
         font-family: "Montserrat";
-        font-size: 24px;
+        font-size: 2.4rem;
     }
     
     /* Additional Pages Reusable CSS */
+    .content-body .content-body-attorney-header{
+      font-size: 2.4rem;
+      margin-bottom: 1.0rem;
+    }
+
     footer {
         display: flex;
         justify-content: space-between;
         background: rgb(9, 53, 84);
-        height: 120px;
+        height: 12.0rem;
         align-items: center;
         padding: 0 2vw;
     }
     .footer-logo-container .company-name{
         color: #F2F2F2;
-        font-size: 20px;
+        font-size: 2.0rem;
     }
     
     .footer-item {
         font-weight: 700;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.05rem;
     }
     
     .footer-item a {
         color: #F2F2F2;
     }
     
-    .footer-item a:visited {
-        color: #F2F2F2;
+    .footer-logo-container .subheader-name{
+      color: #bfa16e;
     }
+    .contact-us {
+      font-size: 1.5rem;
+    }
+
     .page-title-container {
-      height: 250px;
+      height: 25.0rem;
       background: #0a3454;
       display: flex;
       align-items: center;
@@ -255,180 +309,169 @@
 
     .page-title-header {
         margin-left: 2rem;
-        font-size: 42px;
+        font-size: 4.2rem;
         color: #ffffff;
     }
     
     .content-body {
-        margin: 20px auto;
-        width: 900px;
+        margin: 2.0rem auto;
+        width: 90vw;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
+
+    .content-body h2{
+      font-size: 2.4em;
+    }
     
     .list-item-paragraph {
-        margin-top: 3px;
+        margin-top: 0.3rem;
     }
     
     .last-paragraph {
         line-height: 1.5;
     }
+    .mobile-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+  
+    .mobile-container li {
+      list-style: none;
+      padding: 1rem;
+    }
+  
+    .mobile-container img {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
     
     /* Responsive Design */
-
-    /* CTA Image specific media queries*/
-    @media(min-width: 1075px) and (max-width: 1490px) {
-      .hero-page-right .cta-image{
-          margin-top: 4rem;
-          transition: margin-top 0.3s ease;
-      }
-    }  
-    
-    /* CTA Container Specific media queries*/
-    @media(min-width:1075px) and (max-width:1205px){
-      .hero-page-left .cta-container .cta-header{
-          font-size: 44px;
-  
-      }
-
-      .logo-container .company-name{
-        font-size: 20px;
+    @media (max-width: 1565px) {
+      .hero-page-left .cta-image {
+       margin-top: 5rem;
       }
     }
-  
-    /* Smaller desktop - Tablet Design*/
-    @media (max-width: 1074px) {
-      .hero-page-layout {
-        flex-direction: column;
-      }
-      .hero-page-left {
-          margin: 0px;
-      }
-      .hero-page-left, .hero-page-right {
-        width: 100%;
-      }
-      .navbar-container .call-now-btn{
-          margin-right: 0px;
-      }
-      .logo-container .company-name{
-          font-size: 20px;
-      }
-
-      .hero-page-left .cta-container {
-        width: 92vw;
-        margin: 0 auto;
-        height: 60vh;
-        font-size: 40px;
-      }
-  
-      .hero-page-right .cta-image {
-        display: none;
-      }
-  
-      .hero-page-left .cta-container .cta-header {
-          font-size: 40px;
-      }
+    @media(max-width:1350px){
+      .hero-page-left .cta-image {
+        margin-top: 8rem;
+       }
     }
 
-    @media (min-width: 800px) and (max-width: 1000px) {
-      .hero-page-left .cta-container {
-        width: 95vw;
-        max-width: 95vw;
-        margin: 0 auto;
-        font-size: 36px;
+
+    @media(max-width: 849px){
+      .site-header {
+       flex-direction: column-reverse;
+       align-items: center;
       }
-      
-      /* .hero-page-left .cta-container .cta-header {
-        font-size: 36px;
-      } */
-    } 
-    
-    /* Additional Page : FAQs , etc */
-    @media(max-width: 949px){
-      
-      .mobile-nav-container{
-        display: block;
-        
-      }
-      
-      .mobile-container{
-        display: flex;
-        margin-top: 27px;
-      }
-      .mobile-container li {
-        list-style: none;
-        margin-left: 20px;
-      }
-      
       .nav .navbar-container{
         display: none;
       }
-      
-      .logo-container .company-name{
-        font-size: 18px;
+
+      .mobile-nav-container{
+        display: block;
+      }
+      .mobile-container {
+        width: 94vw;
+        margin-top: 1.0rem;
+      }
+      .mobile-container li:first-child{
+        padding-left: 0;
+      }
+      .mobile-container li:last-child{
+        padding-right: 0;
       }
       .mobile-container .nav-link.active {
-        padding-top: 10px;
+        padding-top: 1.8rem;
         border-top: solid #1d84b1;
-        border-top-width: 3px;
+        border-top-width: 0.3rem;
       }
-      .hero-page-left .cta-container {
-        margin-top: 8rem;
-        min-height: 0;
-        width: 95vw;
+      .company-name{
+        font-size: 2.5rem;
       }
-      .cta-container{
-        margin: 0 0.75rem;
-        width: 90vw;
+      .logo-container {
+        margin-right: 39.0rem;
       }
-      
-      /* Title Section For Additional Pages */
-      .page-title-container {
-        height: 210px;
-      }
-      
-      .page-title-header{
-        font-size: 38px;
-      }
-      
-      /* Content Body Section Add. Pages  */
-      .content-body{
-        width: 80%;
-      }
-      
-      .site-body {
-        padding: 60px;
-      }
-      
-      /* Footer Section */
-      .footer-logo-container .company-name{
-        font-size: 15px;
-      }
-      .footer-item{
-        font-size: 12px;
-      }
-      
-    }
-    
-    @media(max-width: 865px) {
-      .hero-page-left .cta-container{
-        width: 92vw;
-      }
-    }
 
-    @media (max-width: 600px) {
-      .hero-page-left .cta-container {
-        width: 90vw;
-        padding: 20px;
+      .hero-page-layout{
+        flex-direction: column;
+      }
+
+      .hero-page-left {
+        margin: 0 auto;
+      }
+      .hero-page-right{
+        height: 24vh;
+      }
+      .hero-page-right, .hero-page-left {
+        width: 100%;
+      }
+
+      .cta-container {
+        min-height: 0;
+      }
+
+      .cta-header {
+        width: 87vw;
+        font-size: 3.0rem;
+        margin-top: 9rem;
+        text-align: center;
+
+      }
+      .site-body{
+        padding: 4rem;
       }
       
-      .hero-page-left .cta-container .cta-header {
-        font-size: 32px;
+      .cases-covered-header{
+        font-size: 1.8rem;
+      }
+      .footer-logo-container .company-name {
+        font-size: 1.8rem;
+      }
+
+
+    }
+    @media(max-width: 649px) {
+      .logo-container{
+        margin-right: 28rem;
+      }
+      .logo-container .company-name{
+        font-size: 2.0rem;
+      }
+      .cta-header {
+        margin-top: 7.5rem;
+      }
+      footer{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        
+      }
+      .footer-item {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+     @media(max-width: 439px) {
+      .logo-container{
+        margin-right: 10rem;
+      }
+      .cta-header {
+        margin-top: 8.0rem;
+      }
+      .page-title-container {
+        height: 20rem;
       }
       .page-title-header {
-        font-size: 32px;
+        font-size: 3.2rem;
       }
-    }
-  
-  
+      
+      .footer-logo-container .company-name {
+        font-size: 1.6rem;
+      }
+     }
+    

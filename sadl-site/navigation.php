@@ -1,9 +1,5 @@
 <?php
 $navItems = [
-    'index.php' => [
-        'title' => 'Home',
-        'icon' => 'images/icons/home-page-icon.svg'
-    ],
     'profile.php' => [
         'title' => 'Profile',
         'icon' => 'images/icons/attorney-profile-icon.svg'
@@ -25,7 +21,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <div class="site-header">
     <div class="logo-container">
-        <a class="company-name" href="index.php">
+        <a class="company-name" rel="home" href="index.php">
             San Antonio Disability Lawyer
         </a>
         <p class="subheader-name">Michael F. Archer</p>
@@ -36,7 +32,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <?php foreach ($navItems as $url => $item): ?>
                 <li class="nav-items<?php echo ($currentPage == $url) ? ' current-item' : ''; ?>">
                     <a href="<?php echo $url; ?>" 
-                       class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>">
+                       class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>"
+                       <?php echo ($currentPage ==$url) ? ' aria-current="page"' : ''; ?>>
                         <?php echo $item['title']; ?>
                     </a>
                 </li>
@@ -56,7 +53,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <?php foreach ($navItems as $url => $item): ?>
             <li>
                 <a href="<?php echo $url; ?>" 
-                   class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>">
+                   class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>"
+                   <?php echo ($currentPage ==$url) ? ' aria-current="page"' : ''; ?>>
                     <img src="<?php echo $item['icon']; ?>" alt="<?php echo $item['title']; ?>" />
                 </a>
             </li>
