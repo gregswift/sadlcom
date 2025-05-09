@@ -5,7 +5,7 @@
         </a>
         <p class="subheader-name">Michael F. Archer</p>
     </div>
-      <p class="footer-item contact-us">
-        <a class="" href="tel:+12106994640"> Contact Us: 210-699-4640</a>
+      <p class="footer-item">
+        <a class="contact-us" href="tel:+12106994640"> Contact Us: 210-699-4640</a>
       </p>
 </footer>
