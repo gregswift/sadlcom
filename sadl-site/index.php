@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>San Antonio Disability Lawyer</title>
+    <link rel="stylesheet" href="/public/css/normalize.css">
     <link rel="stylesheet" href="styles/main.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
@@ -12,28 +13,27 @@
   <body>
     <section class="hero-page">
       <div class="pages-container">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
         <?php include 'navigation.php'?>
         <div class="hero-page-layout">
           <div class="hero-page-left">
-            <div class="cta-container">
-              <h1 class="cta-header">
-                <span>Texas</span>
-                <span class="social-security">Social Security</span><br />
-                Disability <span class="attorney">Attorney</span>
-              </h1>
-            </div>
+          <img
+              class="cta-image"
+              src="images/figma-sa.png"
+              alt=""
+            />
           </div>
 
           <div class="hero-page-right">
-            <img
-              class="cta-image"
-              src="images/san_antonio_png24.png"
-            />
+            <div class="cta-container">
+              <h1 class="cta-header">Texas Social Security Disability <span class="attorney">Attorney</span></h1>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="site-body">
+    <main id="main-content">
+      <section class="site-body">
       <div class="about-me-container">
         <p>
           <b>Michael F. Archer, Attorney at Law</b>, has been successfully
@@ -56,7 +56,7 @@
           attorneys, and health care professionals.
         </p>
         <div class="cases-covered-container">
-          <h3 class="cases-covered-header">Types of Cases Handled</h3>
+          <h2 class="cases-covered-header">Types of Cases Handled</h2>
           <ul class="list-of-cases">
             <li class="list-item">
               Social Security Disability Insurance (Title II)
@@ -70,7 +70,8 @@
           </ul>
         </div>
       </div>
-    </section>
+      </section>
+    </main>
     <?php include 'footer.php'?>
   </body>
 </html>
