@@ -2,13 +2,13 @@ name: Publish Site
 
 on:
   workflow_dispatch:
-#  workflow_run:
-#    workflows:
-#    - "Run validation and build checks"
-#    branches:
-#    - main
-#    types:
-#    - completed
+  workflow_run:
+    workflows:
+    - "Run validation and build checks"
+    branches:
+    - main
+    types:
+    - completed
 
 jobs:
   publish:
