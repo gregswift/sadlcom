@@ -22,10 +22,14 @@ jobs:
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.DEPLOY_KEY }}" | base64 -d  > ~/.ssh/id_rsa
 
+    - name: Extract branch name
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
     - name: Publish site
       run: make publish
       env:
         TARGET_SYSTEM: ${{ vars.TARGET_SYSTEM }} # This should be user@host
         TARGET_PORT: ${{ vars.TARGET_PORT }}
-        TARGET_DIR: ${{ vars.TARGET_DIR }}/${{ github.ref_name }}
+        TARGET_DIR: ${{ vars.TARGET_DIR }}/${{ steps.extract_branch.outputs.branch }}
         PUBLISH_DRAFT: true
