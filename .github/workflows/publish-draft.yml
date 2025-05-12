@@ -1,19 +1,12 @@
 name: Publish Draft
 
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
-  workflow_run:
-    workflows:
-    - "Run validation and build checks"
-    branches:
-    - '!main'
-    types:
-    - completed
 
 jobs:
   publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
     environment: draft
 
     env:
