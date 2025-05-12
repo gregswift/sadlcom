@@ -29,6 +29,8 @@ jobs:
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.DEPLOY_KEY }}" | base64 -d  > ~/.ssh/id_rsa
 
+    - run: ls -lR
+
     - name: Publish site
       run: make publish
       env:
