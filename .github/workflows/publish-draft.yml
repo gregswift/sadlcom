@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    environment: draft
+    environment: drafts
 
     env:
       CONTAINER_ENGINE: docker
