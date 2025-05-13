@@ -1,3 +1,5 @@
+<?php require_once '../config.inc.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -14,27 +16,11 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
-    <script src="https://www.google.com/recaptcha/api.js?render=6Ld-37EqAAAAAPMxRxdVdHzTQeAv6TLiot3Pv-YF"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php print $recaptchakey; ?>"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("client-form");
-        const submitButton = document.querySelector(".form-btn");
-        
-        submitButton.addEventListener("click", function(event) {
-          event.preventDefault(); 
-         
-          grecaptcha.ready(function() {
-            grecaptcha
-              .execute("6Ld-37EqAAAAAPMxRxdVdHzTQeAv6TLiot3Pv-YF", {
-                action: "submit"
-              })
-              .then(function(token) {
-                document.getElementById("g-recaptcha-response").value = token;
-                form.submit(); 
-              });
-          });
-        });
-      });
+      function onSubmit(token) {
+        document.getElementById("client-form").submit();
+      };
     </script>
   </head>
 
@@ -69,9 +55,7 @@
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
-          <input type="hidden" name="action" value="validate_captcha" />
-          <button class="g-recaptcha form-btn" data-sitekey="SITE_KEY" data-callback="onSubmit" type="submit">
+          <button class="g-recaptcha" data-sitekey="<?php print $recaptchakey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
             Send
           </button>
       </form>
