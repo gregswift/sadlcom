@@ -16,7 +16,7 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php print $recaptchakey; ?>"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php print $recaptchaSiteKey; ?>"></script>
     <script>
       function onSubmit(token) {
         document.getElementById("client-form").submit();
@@ -55,7 +55,7 @@
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button class="g-recaptcha" data-sitekey="<?php print $recaptchakey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
+          <button class="g-recaptcha" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
             Send
           </button>
       </form>

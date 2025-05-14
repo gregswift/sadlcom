@@ -1,25 +1,26 @@
 <?php
 
-require 'PHPMailerAutoload.php';
+require 'vendor/autoload.php';
 require_once '../config.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
         $token = $_POST['g-recaptcha-response'];
-        $url = 'https://recaptchaenterprise.googleapis.com/v1/projects/websites-459715/assessments?key=${recaptchakey}';
+        error_log('Token: '.$token);
+        $url = 'https://recaptchaenterprise.googleapis.com/v1/projects/websites-459715/assessments?key='.$recaptchaAPIKey;
         $data = [
-          "event": [
+          "event" => [
             "token" => $token,
-            "expectedAction" => "contact",
-            "siteKey" => $recaptchakey,
+            "siteKey" => $recaptchaSiteKey,
           ]
         ];
 
         $options = [
             'http' => [
                 'method' => 'POST',
-                'content' => http_build_query($data)
+                'header' => 'Content-Type: application/json\r\n',
+                'content' => http_build_query($data),
             ]
         ];
         $context = stream_context_create($options);
