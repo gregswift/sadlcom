@@ -74,17 +74,23 @@ html {
   }
   
   @media (max-width: 990px) {
-      .page-title-container {
-        margin-top: 2rem;
-      }
-  
-      .address-section {
-        display: none;
-      }
-  
       form {
         margin: 5rem 1rem;
       }
+  }
+  @media(max-width: 849px){
+    .contact-us-container{
+      flex-direction: column;
+    }
+    .address-section {
+      text-align: center;
+    }
+    .address-line-1 {
+      margin-top: 10rem;  
+    }
+    .address-line-2 {
+        margin-bottom: 5rem;
+    }  
   }
   @media (max-width: 460px) {
       form {
