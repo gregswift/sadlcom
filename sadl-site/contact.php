@@ -144,6 +144,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button class="g-recaptcha" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
             Send
           </button>
+          <?php if ($recaptcha_success): ?>
+              <div class="success-message">Form submitted successfully!</div>
+          <?php endif; ?>
       </form>
       </div>
     </main>
