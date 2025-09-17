@@ -61,3 +61,4 @@ serve: ## Run a local instance of the site for debugging
 .PHONY:publish
 publish: .check-env-publish build  ## Send the files to hosting provider using scp
 	rsync -e 'ssh -o StrictHostKeyChecking=accept-new -p $(TARGET_PORT)' -atvz $(OUTPUT_DIR)/* $(TARGET_SYSTEM):$(TARGET_DIR)/
+	ssh -o StrictHostKeyChecking=accept-new -p $(TARGET_PORT) $(TARGET_SYSTEM) "cd ${TARGET_DIR} && exec composer install"
