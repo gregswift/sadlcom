@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const form = document.getElementById("client-form");
-        const submitButton = document.querySelector(".form-btn");
+        const submitButton = document.querySelector(".submit-btn");
         
         submitButton.addEventListener("click", function(event) {
           event.preventDefault(); 
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button class="g-recaptcha submit-btn" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
+          <button id="submit-btn"class="g-recaptcha" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
             Send
           </button>
 <?php

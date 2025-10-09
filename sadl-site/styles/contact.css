@@ -63,7 +63,7 @@ html {
       font-size: 1.6rem;
   }
   
-  form .submit-btn {
+  form #submit-btn {
       height: 5.0rem;
       width: 10.5rem;
       background-color: #84CBD6;
