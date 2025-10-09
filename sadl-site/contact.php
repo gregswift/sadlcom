@@ -2,6 +2,7 @@
 //Load the site's config data
 require_once '../sadlcom-config.inc.php';
 
+
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,6 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
 require 'vendor/autoload.php';
+$form_message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
@@ -30,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $context = stream_context_create($options);
         $verify = file_get_contents($url, false, $context);
         $captcha_success = json_decode($verify);
+        $captcha_error = 'reCAPTCHA verification failed.';
 
         if ($captcha_success->success) {
             $name = $_POST['name'];
@@ -64,18 +67,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->AltBody = "Name: $name\nEmail: $email\nMessage: $message";
 
             if(!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
+                $form_message = 'Message could not be sent.';
+                $form_message .= 'Mailer Error: ' . $mail->ErrorInfo;
+                $form_message_class = 'failure-message';
             } else {
-                echo 'Message has been sent';
+               $form_message = 'Message has been sent';
+               $form_message_class = 'success-message';
             }
 
         } else {
-            // CAPTCHA is invalid; display an error message.
-            echo "reCAPTCHA verification failed.";
+           
+            if(!$captcha_success->success){
+              $form_message = $captcha_error;
+              $form_message_class = 'failure-message';
+            } else {
+              $form_message='Form submitted successfully!';
+              $form_message_class = 'success-message';
+            }
+
         }
     } else {
-        echo "Please complete the reCAPTCHA.";
+        $form_message = "Please complete the reCAPTCHA.";
+        $form_message_class = 'failure-message';
     }
 }
 ?>
@@ -150,12 +163,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button class="g-recaptcha" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
+          <button class="g-recaptcha submit-btn" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
             Send
           </button>
-          <?php if ($recaptcha_success): ?>
-              <div class="success-message">Form submitted successfully!</div>
-          <?php endif; ?>
+<?php
+if ($form_message){ 
+  echo "          <div class=\"{$form_message_class}\">{$form_message}</div>";
+}
+?>
       </form>
       </div>
     </main>

@@ -9,10 +9,18 @@ html {
   }
   
   .address-line-1 {
+      /* font-weight: 700;
+      font-size: 20px; */
+      text-transform: capitalize;
+      font-weight: 600;
       margin-bottom: 0.0rem;
   }
   
   .address-line-2 {
+      /* font-weight: 700;
+      font-size: 20px; */
+      text-transform: capitalize;
+      font-weight: 600;
       margin-top: 0.0rem;
   }
   
@@ -25,6 +33,8 @@ html {
       flex-direction: column;
       width: 36rem;
       justify-content: center;
+      text-transform: capitalize;
+      font-weight: 600;
   }
   
   form input {
@@ -53,7 +63,7 @@ html {
       font-size: 1.6rem;
   }
   
-  form .form-btn {
+  form .submit-btn {
       height: 5.0rem;
       width: 10.5rem;
       background-color: #84CBD6;
@@ -64,7 +74,31 @@ html {
       font-family: "Open Sans";
       margin: 5.0rem 0.0rem;
       border-radius: 0.5rem;
+      font-size: 1.6rem;
+      box-shadow: 0px 2px 4px 0px rgba(113,148,154,1);
   }
+
+  .failure-message{
+    padding: 14px;
+    font-size: 12px;
+    border: 2px solid rgb(194,32,29);
+    background-color: #f5c3c2;
+    border-radius: 5px;
+    height: 50px;
+    width: 230px;
+  }
+
+  .success-message {
+    padding: 14px;
+    font-size: 12px;
+    background-color: #daf0d7;
+    border-radius: 5px;
+    border: 2px solid #1B7246;
+    height: 50px;
+    width: 230px;
+
+  }
+
   
   /* Media Queries */
   @media (max-width: 1089px) {
@@ -73,7 +107,12 @@ html {
     }  
   }
   
-  @media (max-width: 990px) {
+  /* @media (max-width: 990px) {
+      form {
+        margin: 5rem 1rem;
+      }
+  } */
+  @media (max-width: 1800px) {
       form {
         margin: 5rem 1rem;
       }
@@ -82,6 +121,7 @@ html {
     .contact-us-container{
       flex-direction: column;
     }
+
     .address-section {
       text-align: center;
     }
@@ -90,7 +130,8 @@ html {
     }
     .address-line-2 {
         margin-bottom: 5rem;
-    }  
+    }
+    
   }
   @media (max-width: 460px) {
       form {
