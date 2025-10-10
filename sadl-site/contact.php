@@ -12,84 +12,83 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
 require 'vendor/autoload.php';
 $form_message = '';
+$form_message_class = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-        $token = $_POST['g-recaptcha-response'];
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = array(
-            'secret' => $secretKey,
-            'response' => $token,
-            'remoteip' => $_SERVER['REMOTE_ADDR']
-        );
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $token = $_POST['g-recaptcha-response'] ?? '';
+  if (!$token) {
+    $form_message = 'Please complete the reCAPTCHA.';
+    $form_message_class = 'failure-message';
+  } else {
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $options = array(
-            'http' => array(
-                'method' => 'POST',
-                'content' => http_build_query($data)
-            )
-        );
-        $context = stream_context_create($options);
-        $verify = file_get_contents($url, false, $context);
-        $captcha_success = json_decode($verify);
-        $captcha_error = 'reCAPTCHA verification failed.';
+    $data = [
+      'secret' => $secretKey,
+      'response' => $token,
+      'remoteip' => $_SERVER['REMOTE_ADDR'],
+  
+    ];
 
-        if ($captcha_success->success) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $message = $_POST['message'];
+    $options = [
+      'http' => [
+        'method' => 'POST',
+        'content' => http_build_query($data),
+        'header' => 'Content-Type: application/x-www-form-urlencoded'
+      ],
+    ];
 
-            $mail = new PHPMailer;
-
-            // $mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'your_smtp_host';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'your_smtp_username';                 // SMTP username
-            $mail->Password = 'your_smtp_password';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
-
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('recipient@example.com', 'Joe User');     // Add a recipient
-            // $mail->addAddress('ellen@example.com');               // Name is optional
-            // $mail->addReplyTo('info@example.com', 'Information');
-            // $mail->addCC('cc@example.com');
-            // $mail->addBCC('bcc@example.com');
-
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-            $mail->isHTML(true);                                  // Set email format to HTML
-
-            $mail->Subject = 'Contact Form Submission';
-            $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
-            $mail->AltBody = "Name: $name\nEmail: $email\nMessage: $message";
-
-            if(!$mail->send()) {
-                $form_message = 'Message could not be sent.';
-                $form_message .= 'Mailer Error: ' . $mail->ErrorInfo;
-                $form_message_class = 'failure-message';
-            } else {
-               $form_message = 'Message has been sent';
-               $form_message_class = 'success-message';
-            }
-
-        } else {
-           
-            if(!$captcha_success->success){
-              $form_message = $captcha_error;
-              $form_message_class = 'failure-message';
-            } else {
-              $form_message='Form submitted successfully!';
-              $form_message_class = 'success-message';
-            }
-
-        }
+    $context = stream_context_create($options);
+    $verify = file_get_contents($url, false, $context);
+    if ($verify === false) {
+      $form_message = 'Verification service is unavailable. Please try again.';
+      $form_message_class = 'failure-message';
     } else {
-        $form_message = "Please complete the reCAPTCHA.";
-        $form_message_class = 'failure-message';
+      $res = json_decode($verify, true);
+      // set defaults for the the v3 return object
+      $isVerified = $res['success'] ?? false;
+      $action = $res['action'] ?? '';
+      $score = $res['score'] ?? 0;
+      $host = $res['hostname'] ?? '';
+      
+      if ($isVerified && $action == 'submit' && $score >= 0.5){
+        $name = trim($_POST['name'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $subject = trim($_POST['subject'] ?? 'Contact Form Submission'); 
+        $message = trim($_POST['message'] ?? '');
+    
+        $mail = new PHPMailer;
+    
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'your_smtp_host';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'your_smtp_username';                 // SMTP username
+        $mail->Password = 'your_smtp_password';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+    
+        $mail->setFrom('from@example.com', 'Mailer');
+        $mail->addAddress('recipient@example.com', 'Joe User');     // Add a recipient
+    
+        $mail->Subject = $subject;
+        $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
+        $mail->AltBody = "Name: $name\nEmail: $email\nMessage: $message";
+        
+        if(!$mail->send()) {
+            $form_message = 'Message could not be sent.';
+            $form_message .= 'Mailer Error: ' . $mail->ErrorInfo;
+            $form_message_class = 'failure-message';
+          } else {
+             $form_message = 'Message has been sent';
+             $form_message_class = 'success-message';
+          }
+          
+      } else {
+          $form_message = 'reCAPTCHA score too low. Please try again.';
+          $form_message_class = 'failure-message';
+      }
     }
+
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -108,28 +107,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php print $recaptchaSiteKey; ?>"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("client-form");
-        const submitButton = document.querySelector(".submit-btn");
-        
-        submitButton.addEventListener("click", function(event) {
-          event.preventDefault(); 
-         
-          grecaptcha.ready(function() {
-            grecaptcha
-              .execute("<?php echo $siteKey; ?>", {
-                action: "submit"
-              })
-              .then(function(token) {
-                document.getElementById("g-recaptcha-response").value = token;
-                form.submit(); 
-              });
-          });
-        });
-      });
-    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script> function onSubmit(token) {
+      document.getElementById("client-form").submit();
+      }
+     </script>
   </head>
 
   <body>
@@ -163,7 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button id="submit-btn"class="g-recaptcha" data-sitekey="<?php print $recaptchaSiteKey; ?>" data-callback="onSubmit" data-action="submit" type="submit">
+          <button 
+            class="g-recaptcha" 
+            data-sitekey="<?php echo $recaptchaSiteKey; ?>"
+            data-callback="onSubmit" 
+            data-action="submit"
+            id="submit-btn" 
+            type="submit" 
+            >
             Send
           </button>
 <?php
