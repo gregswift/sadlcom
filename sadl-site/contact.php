@@ -20,60 +20,69 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
 require 'vendor/autoload.php';
-$form_message = '';
+
+$form_message       = '';
 $form_message_class = '';
+
+$FAILURE_CLASS = 'failure-message';
+$SUCCESS_CLASS = 'success-message';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $token = $_POST['g-recaptcha-response'] ?? '';
+
   if (!$token) {
-    $form_message = 'Please complete the reCAPTCHA.';
-    $form_message_class = 'failure-message';
+    $form_message       = 'Please complete the reCAPTCHA.';
+    $form_message_class = $FAILURE_CLASS;
   } else {
-    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $verifyURL = 'https://www.google.com/recaptcha/api/siteverify';
 
     $data = [
-      'secret' => $secretKey,
+      'secret'   => $secretKey,
       'response' => $token,
       'remoteip' => $_SERVER['REMOTE_ADDR'],
-  
     ];
 
     $options = [
       'http' => [
-        'method' => 'POST',
         'content' => http_build_query($data),
-        'header' => 'Content-Type: application/x-www-form-urlencoded'
+        'header'  => 'Content-Type: application/x-www-form-urlencoded',
+        'method'  => 'POST',
+        'timeout' => 10
       ],
     ];
 
     $context = stream_context_create($options);
-    $verify = file_get_contents($url, false, $context);
+    $verify  = file_get_contents($verifyURL, false, $context);
+
     if ($verify === false) {
-      $form_message = 'Verification service is unavailable. Please try again.';
-      $form_message_class = 'failure-message';
+      $form_message       = 'Verification service is unavailable. Please try again.';
+      $form_message_class = $FAILURE_CLASS;
     } else {
       $res = json_decode($verify, true);
+
+      error_log("reCAPTCHA verification response: " . print_r($res, true));
+
       // set defaults for the the v3 return object
       $isVerified = $res['success'] ?? false;
-      $action = $res['action'] ?? '';
-      $score = $res['score'] ?? 0;
-      $host = $res['hostname'] ?? '';
-      
+      $action     = $res['action'] ?? '';
+      $score      = $res['score'] ?? 0;
+      $host       = $res['hostname'] ?? '';
+
       if ($isVerified && $action == 'submit' && $score >= 0.5){
-        $name = trim($_POST['name'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $subject = trim($_POST['subject'] ?? 'Contact Form Submission'); 
+        $name    = trim($_POST['name'] ?? '');
+        $email   = trim($_POST['email'] ?? '');
+        $subject = trim($_POST['subject'] ?? 'Contact Form Submission');
         $message = trim($_POST['message'] ?? '');
-    
+
         $mail = new PHPMailer;
-    
+
         $mail->isSMTP();
-        $mail->Host = $smtpHost;
-        $mail->SMTPAuth = true;
-        $mail->Username = $smtpUsername;
-        $mail->Password = $smtpPassword;
+        $mail->Host       = $smtpHost;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $smtpUsername;
+        $mail->Password   = $smtpPassword;
         $mail->SMTPSecure = $smtpSecure;
-        $mail->Port = $smtpPort;
+        $mail->Port       = $smtpPort;
 
         $mail->setFrom($smtpUsername, $smtpFromName);
         $mail->addAddress($smtpTarget);
@@ -81,19 +90,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Subject = $smtpSubjectPrefix . $subject;
         $mail->Body    = "Name: $name<br />Email: $email<br />Message:<br />$message";
         $mail->AltBody = "Name: $name\nEmail: $email\nMessage:\n$message";
-        
+
         if(!$mail->send()) {
-            $form_message = 'Message could not be sent.';
-            $form_message .= 'Mailer Error: ' . $mail->ErrorInfo;
-            $form_message_class = 'failure-message';
+            $form_message       = 'Message could not be sent.<br />';
+            $form_message       .= 'Mailer Error: ' . $mail->ErrorInfo;
+            $form_message_class = $FAILURE_CLASS;
           } else {
-             $form_message = 'Message has been sent';
-             $form_message_class = 'success-message';
+             $form_message       = 'Message has been sent';
+             $form_message_class = $SUCCESS_CLASS;
           }
-          
+
       } else {
-          $form_message = 'reCAPTCHA score too low. Please try again.';
-          $form_message_class = 'failure-message';
+          $form_message       = 'reCAPTCHA score too low. Please try again.';
+          $form_message_class = $FAILURE_CLASS;
       }
     }
   }
@@ -101,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
-
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -116,10 +124,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-     <script> function onSubmit(token) {
-      document.getElementById("client-form").submit();
-      }
-     </script>
+    <script>
+function onSubmit(token) {
+  document.getElementById("client-form").submit();
+}
+    </script>
   </head>
 
   <body>
@@ -137,14 +146,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.9107765654076!2d-98.5128077237558!3d29.606279875147237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c618a479d9bb3%3A0x31a63bb17742b178!2s1150%20N%20Loop%201604%20W%20108%20420%2C%20San%20Antonio%2C%20TX%2078248!5e0!3m2!1sen!2sus!4v1727231668222!5m2!1sen!2sus"
           width="346" height="300"></iframe>
       </div>
-      <form id="client-form" method="post">
+      <div>
+<?php
+if ($form_message){
+  echo "        <div class=\"{$form_message_class}\">{$form_message}</div>";
+}
+?>
+        <form id="client-form" method="post">
           <label class="label-header" for="name">Your Name: (required)</label>
           <input type="text" id="name" name="name" aria-required="true" required />
           <span class="error" id="name-error" aria-live="polite"></span>
 
-          <label class="label-header" for="email">
-            Your Email: (required)
-          </label>
+          <label class="label-header" for="email">Your Email: (required)</label>
           <input type="email" id="email" name="email" aria-required="true" required />
 
           <label class="label-header" for="subject-line">Subject</label>
@@ -153,25 +166,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button 
-            class="g-recaptcha" 
+          <button
+            class="g-recaptcha"
             data-sitekey="<?php echo $recaptchaSiteKey; ?>"
-            data-callback="onSubmit" 
+            data-callback="onSubmit"
             data-action="submit"
-            id="submit-btn" 
-            type="submit" 
-            >
+            id="submit-btn"
+            type="submit"
+          >
             Send
           </button>
-<?php
-if ($form_message){ 
-  echo "          <div class=\"{$form_message_class}\">{$form_message}</div>";
-}
-?>
-      </form>
+        </form>
       </div>
     </main>
-    <?php include "footer.php" ?>
   </body>
-
+<?php include "footer.php" ?>
 </html>
