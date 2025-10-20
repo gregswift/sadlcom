@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if(!$mail->send()) {
             $form_message       = 'Message could not be sent.<br />';
-            $form_message       .= 'Mailer Error: ' . $mail->ErrorInfo;
+            $form_message      .= 'Mailer Error: ' . $mail->ErrorInfo;
             $form_message_class = $FAILURE_CLASS;
           } else {
              $form_message       = 'Message has been sent';
@@ -123,10 +123,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo urlencode($recaptchaSiteKey); ?>" async="" defer="" />
     <script>
-function onSubmit(token) {
-  document.getElementById("client-form").submit();
+function handleSubmit(e) {
+  e.preventDefault();
+  grecaptcha.ready(function() {
+    grecaptcha.execute($recaptchaSiteKey, {action: 'submit'}).then(function(token) {
+      document.getElementById('g-recaptcha-response').value = token;
+      e.target.submit();
+    });
+  });
 }
     </script>
   </head>
@@ -152,7 +158,7 @@ if ($form_message){
   echo "        <div class=\"{$form_message_class}\">{$form_message}</div>";
 }
 ?>
-        <form id="client-form" method="post">
+        <form id="client-form" method="post" action="contact.php" onsubmit="handleSubmit(event)">
           <label class="label-header" for="name">Your Name: (required)</label>
           <input type="text" id="name" name="name" aria-required="true" required />
           <span class="error" id="name-error" aria-live="polite"></span>
@@ -166,16 +172,9 @@ if ($form_message){
           <label class="label-header" for="message">Your Message</label>
           <textarea  name="message" id="message" rows="10" cols="50"></textarea>
 
-          <button
-            class="g-recaptcha"
-            data-sitekey="<?php echo $recaptchaSiteKey; ?>"
-            data-callback="onSubmit"
-            data-action="submit"
-            id="submit-btn"
-            type="submit"
-          >
-            Send
-          </button>
+          <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+
+          <button class="g-recaptcha" id="submit-btn" type="submit">Send</button>
         </form>
       </div>
     </main>
