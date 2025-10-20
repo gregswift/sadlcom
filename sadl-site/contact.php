@@ -1,7 +1,16 @@
 <?php
 //Load the site's config data
 require_once '../sadlcom-config.inc.php';
-
+// Above load provides:
+// - $recaptchaAPIKey
+// - $recaptchaSiteKey
+// - $smtpHost
+// - $smtpPort
+// - $smtpUsername
+// - $smtpPassword
+// - $smtpSecure
+// - $smtpFromName
+// - $smtpSubjectPrefix
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -58,20 +67,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
         $mail = new PHPMailer;
     
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'your_smtp_host';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'your_smtp_username';                 // SMTP username
-        $mail->Password = 'your_smtp_password';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
-    
-        $mail->setFrom('from@example.com', 'Mailer');
-        $mail->addAddress('recipient@example.com', 'Joe User');     // Add a recipient
-    
-        $mail->Subject = $subject;
-        $mail->Body    = "Name: $name<br>Email: $email<br>Message: $message";
-        $mail->AltBody = "Name: $name\nEmail: $email\nMessage: $message";
+        $mail->isSMTP();
+        $mail->Host = $smtpHost;
+        $mail->SMTPAuth = true;
+        $mail->Username = $smtpUsername;
+        $mail->Password = $smtpPassword;
+        $mail->SMTPSecure = $smtpSecure;
+        $mail->Port = $smtpPort;
+
+        $mail->setFrom($smtpUsername, $smtpFromName);
+        $mail->addAddress($smtpTarget);
+
+        $mail->Subject = $smtpSubjectPrefix . $subject;
+        $mail->Body    = "Name: $name<br />Email: $email<br />Message:<br />$message";
+        $mail->AltBody = "Name: $name\nEmail: $email\nMessage:\n$message";
         
         if(!$mail->send()) {
             $form_message = 'Message could not be sent.';
@@ -87,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           $form_message_class = 'failure-message';
       }
     }
-
   }
 }
 ?>
