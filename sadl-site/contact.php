@@ -160,11 +160,11 @@ if ($form_message){
 ?>
         <form id="client-form" method="post" action="contact.php" onsubmit="handleSubmit(event)">
           <label class="label-header" for="name">Your Name: (required)</label>
-          <input type="text" id="name" name="name" aria-required="true" required />
+          <input type="text" id="name" name="name" aria-required="true" autocomplete="name" required />
           <span class="error" id="name-error" aria-live="polite"></span>
 
           <label class="label-header" for="email">Your Email: (required)</label>
-          <input type="email" id="email" name="email" aria-required="true" required />
+          <input type="email" id="email" name="email" aria-required="true" autocomplete="email" required />
 
           <label class="label-header" for="subject-line">Subject</label>
           <input type="text" id="subject-line" name="subject"/>
