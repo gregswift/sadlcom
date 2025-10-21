@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $verifyURL = 'https://www.google.com/recaptcha/api/siteverify';
 
     $data = [
-      'secret'   => $secretKey,
+      'secret'   => $recaptchaAPIKey,
       'response' => $token,
       'remoteip' => $_SERVER['REMOTE_ADDR'],
     ];
