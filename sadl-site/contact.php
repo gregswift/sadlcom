@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 function handleSubmit(e) {
   e.preventDefault();
   grecaptcha.ready(function() {
-    grecaptcha.execute($recaptchaSiteKey, {action: 'submit'}).then(function(token) {
+    grecaptcha.execute('<?php echo $recaptchaSiteKey; ?>', {action: 'submit'}).then(function(token) {
       document.getElementById('g-recaptcha-response').value = token;
       e.target.submit();
     });
