@@ -24,88 +24,109 @@ require 'vendor/autoload.php';
 $form_message       = '';
 $form_message_class = '';
 
-$FAILURE_CLASS = 'failure-message';
+$FAILURE_MESSAGE_VERIFY = 'Verification failed. Please try again later or call me!';
+$FAILURE_MESSAGE_MAIL   = 'Message could not be sent. Please try again later or call me!';
+
+$FAILURE_CLASS  = 'failure-message';
 $SUCCESS_CLASS = 'success-message';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $token = $_POST['g-recaptcha-response'] ?? '';
+// reCAPTCHA Enterprise Verification via Assessment API using cURL
+function verifyRecaptchaEnterprise($projectId, $apiKey, $siteKey, $token, $expectedAction) {
+    $url       = "https://recaptchaenterprise.googleapis.com/v1/projects/{$projectId}/assessments?key={$apiKey}";
 
-  if (!$token) {
-    $form_message       = 'Please complete the reCAPTCHA.';
-    $form_message_class = $FAILURE_CLASS;
-  } else {
-    $verifyURL = 'https://www.google.com/recaptcha/api/siteverify';
-
-    $data = [
-      'secret'   => $recaptchaAPIKey,
-      'response' => $token,
-      'remoteip' => $_SERVER['REMOTE_ADDR'],
+    $payload = [
+        "event" => [
+            "token" => $token,
+            "siteKey" => $siteKey,
+            "expectedAction" => $expectedAction
+        ]
     ];
 
-    $options = [
-      'http' => [
-        'content' => http_build_query($data),
-        'header'  => 'Content-Type: application/x-www-form-urlencoded',
-        'method'  => 'POST',
-        'timeout' => 10
-      ],
-    ];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 
-    $context = stream_context_create($options);
-    $verify  = file_get_contents($verifyURL, false, $context);
+    $response = curl_exec($ch);
 
-    if ($verify === false) {
-      $form_message       = 'Verification service is unavailable. Please try again.';
-      $form_message_class = $FAILURE_CLASS;
-    } else {
-      $res = json_decode($verify, true);
-
-      error_log("reCAPTCHA verification response: " . print_r($res, true));
-
-      // set defaults for the the v3 return object
-      $isVerified = $res['success'] ?? false;
-      $action     = $res['action'] ?? '';
-      $score      = $res['score'] ?? 0;
-      $host       = $res['hostname'] ?? '';
-
-      if ($isVerified && $action == 'submit' && $score >= 0.5){
-        $name    = trim($_POST['name'] ?? '');
-        $email   = trim($_POST['email'] ?? '');
-        $subject = trim($_POST['subject'] ?? 'Contact Form Submission');
-        $message = trim($_POST['message'] ?? '');
-
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();
-        $mail->Host       = $smtpHost;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $smtpUsername;
-        $mail->Password   = $smtpPassword;
-        $mail->SMTPSecure = $smtpSecure;
-        $mail->Port       = $smtpPort;
-
-        $mail->setFrom($smtpUsername, $smtpFromName);
-        $mail->addAddress($smtpTarget);
-
-        $mail->Subject = $smtpSubjectPrefix . $subject;
-        $mail->Body    = "Name: $name<br />Email: $email<br />Message:<br />$message";
-        $mail->AltBody = "Name: $name\nEmail: $email\nMessage:\n$message";
-
-        if(!$mail->send()) {
-            $form_message       = 'Message could not be sent.<br />';
-            $form_message      .= 'Mailer Error: ' . $mail->ErrorInfo;
-            $form_message_class = $FAILURE_CLASS;
-          } else {
-             $form_message       = 'Message has been sent';
-             $form_message_class = $SUCCESS_CLASS;
-          }
-
-      } else {
-          $form_message       = 'reCAPTCHA score too low. Please try again.';
-          $form_message_class = $FAILURE_CLASS;
-      }
+    if (curl_errno($ch)) {
+        //error_log("reCAPTCHA Enterprise: cURL error: " . curl_error($ch));
+        curl_close($ch);
+        return false;
     }
-  }
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($httpCode !== 200) {
+        error_log("reCAPTCHA Enterprise: HTTP {$httpCode} response: {$response}");
+        return false;
+    }
+
+    $result = json_decode($response, true);
+    //error_log("reCAPTCHA Enterprise raw response: " . print_r($result, true));
+
+    // Validation logic
+    $risk = $result['riskAnalysis'] ?? [];
+    $score = $risk['score'] ?? 0;
+    $action = $result['event']['expectedAction'] ?? '';
+    $reasons = implode(', ', $risk['reasons'] ?? []);
+
+    if ($score >= 0.5 && $action === $expectedAction) {
+        return true;
+    } else {
+        error_log("reCAPTCHA Enterprise failed: score={$score}, reasons={$reasons}");
+        return false;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $token = $_POST['g-recaptcha-response'] ?? '';
+    if (empty($token)) {
+        error_log("reCAPTCHA Enterprise: No token in POST");
+        $form_message       = $FAILURE_MESSAGE_VERIFY;
+        $form_message_class = $FAILURE_CLASS;
+    } else {
+        $verified = verifyRecaptchaEnterprise($googleProjectID, $recaptchaAPIKey, $recaptchaSiteKey, $token, "submit");
+        if ($verified === false) {
+            $form_message       = $FAILURE_MESSAGE_VERIFY;
+            $form_message_class = $FAILURE_CLASS;
+        } else {
+            $name    = trim($_POST['name'] ?? '');
+            $email   = trim($_POST['email'] ?? '');
+            $subject = trim($_POST['subject'] ?? 'Contact Form Submission');
+            $message = trim($_POST['message'] ?? '');
+
+            $mail = new PHPMailer;
+
+            $mail->isSMTP();
+            $mail->Host       = $smtpHost;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $smtpUsername;
+            $mail->Password   = $smtpPassword;
+            $mail->SMTPSecure = $smtpSecure;
+            $mail->Port       = $smtpPort;
+
+            $mail->setFrom($smtpUsername, $smtpFromName);
+            $mail->addAddress($smtpTarget);
+
+            $mail->Subject = $smtpSubjectPrefix . " " . $subject;
+            $mail->Body    = "Name: $name<br />Email: $email<br />Message:<br />$message";
+            $mail->AltBody = "Name: $name\nEmail: $email\nMessage:\n$message";
+
+            if(!$mail->send()) {
+                $form_message       = $FAILURE_MESSAGE_MAIL;
+                error_log('Mailer Error: ' . $mail->ErrorInfo);
+                $form_message_class = $FAILURE_CLASS;
+            } else {
+                $form_message       = 'Message has been sent';
+                $form_message_class = $SUCCESS_CLASS;
+            }
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -123,17 +144,59 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
-    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo urlencode($recaptchaSiteKey); ?>" async="" defer=""></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php echo urlencode($recaptchaSiteKey); ?>" async="" defer=""></script>
     <script>
-function handleSubmit(e) {
-  e.preventDefault();
-  grecaptcha.ready(function() {
-    grecaptcha.execute('<?php echo $recaptchaSiteKey; ?>', {action: 'submit'}).then(function(token) {
-      document.getElementById('g-recaptcha-response').value = token;
-      e.target.submit();
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("contact-form");
+  const tokenField = document.getElementById("g-recaptcha-response");
+
+  if (!form) {
+    console.error("[reCAPTCHA DEBUG] Form with ID 'contact-form' not found!");
+    return;
+  } else {
+    console.log("[reCAPTCHA DEBUG] Form element found:", !!form);
+  }
+  console.log("[reCAPTCHA DEBUG] Hidden token field found:", !!tokenField);
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // stop form from submitting right away
+
+    console.log("[reCAPTCHA DEBUG] Submit event triggered");
+    console.log("[reCAPTCHA DEBUG] grecaptcha object:", typeof grecaptcha);
+
+    if (typeof grecaptcha === "undefined") {
+      console.error("[reCAPTCHA DEBUG] grecaptcha is undefined — reCAPTCHA script failed to load!");
+      alert("reCAPTCHA script did not load. Check your site key and script URL.");
+      return;
+    }
+
+    grecaptcha.enterprise.ready(function() {
+      console.log("[reCAPTCHA DEBUG] grecaptcha.ready() called — requesting token...");
+
+      grecaptcha.enterprise.execute('<?php echo $recaptchaSiteKey; ?>', {action: 'submit'}).then(function(token) {
+        console.log("[reCAPTCHA DEBUG] Token received:", token ? token.substring(0, 20) + "..." : "EMPTY");
+        if (!token) {
+          console.error("[reCAPTCHA DEBUG] No token received — reCAPTCHA failed.");
+          alert("Unable to generate reCAPTCHA token. Please try again.");
+          return;
+        }
+
+        if (!tokenField) {
+          console.error("[reCAPTCHA DEBUG] No hidden field found for 'g-recaptcha-response'.");
+          alert("Form misconfigured: missing hidden input for reCAPTCHA.");
+          return;
+        }
+
+        tokenField.value = token;
+        console.log("[reCAPTCHA DEBUG] Token field set. Submitting form now.");
+        form.submit();
+      }).catch(function(err) {
+        console.error("[reCAPTCHA DEBUG] Error executing grecaptcha:", err);
+        alert("reCAPTCHA execution error — see console for details.");
+      });
     });
   });
-}
+});
     </script>
   </head>
 
@@ -158,7 +221,7 @@ if ($form_message){
   echo "        <div class=\"{$form_message_class}\">{$form_message}</div>";
 }
 ?>
-        <form id="client-form" method="post" action="contact.php" onsubmit="handleSubmit(event)">
+        <form id="contact-form" method="post" action="contact.php">
           <label class="label-header" for="name">Your Name: (required)</label>
           <input type="text" id="name" name="name" aria-required="true" autocomplete="name" required />
           <span class="error" id="name-error" aria-live="polite"></span>
@@ -167,12 +230,12 @@ if ($form_message){
           <input type="email" id="email" name="email" aria-required="true" autocomplete="email" required />
 
           <label class="label-header" for="subject-line">Subject</label>
-          <input type="text" id="subject-line" name="subject"/>
+          <input type="text" id="subject-line" name="subject" />
 
           <label class="label-header" for="message">Your Message</label>
-          <textarea  name="message" id="message" rows="10" cols="50"></textarea>
+          <textarea name="message" id="message" rows="10" cols="50" /></textarea>
 
-          <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+          <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
 
           <button class="g-recaptcha" id="submit-btn" type="submit">Send</button>
         </form>
