@@ -14,13 +14,12 @@ require_once '../sadlcom-config.inc.php';
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <?php include 'navigation.inc.php'; ?>
   <div class="page-title-container">
-    <h1 class="page-title-header"><?php echo $pageTitle; ?></h1>
+    <h1 class="page-title-header">Michael F. Archer, Attorney at Law</h1>
   </div>
   <main id="main-content">
     <div class="content-body">
-      <h2 class="content-body-attorney-header">Michael F. Archer, Attorney at Law</h2>
       <div class="content-areas-of-practice-section">
-        <h3>Practice Areas</h3>
+        <h2>Practice Areas</h2>
         <ul>
           <li>Social Security</li>
           <li>Personal Injury</li>
@@ -32,7 +31,7 @@ require_once '../sadlcom-config.inc.php';
         </ul>
       </div>
       <div class="content-admitted-section">
-        <h3>Admitted:</h3>
+        <h2>Admitted:</h2>
         <ul>
           <li>1976, Texas</li>
           <li>1980, U.S. District Court, Western District of Texas</li>
@@ -44,18 +43,18 @@ require_once '../sadlcom-config.inc.php';
         </ul>
       </div>
       <div class="content-law-school-section">
-        <h3>Law School</h3>
+        <h2>Law School</h2>
         <ul>
           <li>St. Mary’s University School of Law, J.D., 1975</li>
           <li>University of Texas, Masters of Law Program, 1976.</li>
         </ul>
       </div>
       <div class="content-college-section">
-        <h3>College</h3>
+        <h2>College</h2>
         <p>University of Texas, B.A., 1973</p>
       </div>
       <div class="content-member-of-section">
-        <h3>Member:</h3>
+        <h2>Member:</h2>
         <ul>
           <li>San Antonio Bar Association</li>
           <li>State Bar of Texas</li>
@@ -63,7 +62,7 @@ require_once '../sadlcom-config.inc.php';
         </ul>
       </div>
       <div class="content-biography">
-        <h3>Biography</h3>
+        <h2>Biography</h2>
         <ul>
           <li>Associate Editor, St. Mary’s Law Journal, 1975</li>
           <li>
