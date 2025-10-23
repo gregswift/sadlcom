@@ -144,6 +144,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
     </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4E0FG3R3M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q4E0FG3R3M');
+</script>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=<?php echo urlencode($recaptchaSiteKey); ?>" async="" defer=""></script>
     <script>
 document.addEventListener("DOMContentLoaded", function() {
