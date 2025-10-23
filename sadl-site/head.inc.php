@@ -87,6 +87,9 @@
       }
     }
   ],
+  "sameAs": [
+    "https://linkedin.com/in/michael-archer-b5605341"
+  ],
   "hasMap": "https://maps.app.goo.gl/judsNN9U8g1h3CK6A"
 }
 </script>
