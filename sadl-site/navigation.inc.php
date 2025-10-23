@@ -13,7 +13,7 @@ $navItems = [
     'icon' => 'images/icons/contact-form-icon.svg'
   ]
 ];
-
+$activeClassSuffix = ' active" aria-current="page"';
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <div class="site-header">
@@ -26,9 +26,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
   <ul class="navbar-container">
 <?php foreach ($navItems as $url => $item): ?>
     <li class="nav-items<?php echo ($currentPage == $url) ? ' current-item' : ''; ?>">
-      <a href="<?php echo $url; ?>" 
-         class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>"
-         <?php echo ($currentPage ==$url) ? ' aria-current="page"' : ''; ?>>
+      <a href="<?php echo $url; ?>" class="nav-link<?php echo ($currentPage == $url) ? $activeClassSuffix : '"'; ?>>
          <?php echo $item['title']; ?>
       </a>
     </li>
@@ -47,9 +45,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
   <ul class="mobile-container">
 <?php foreach ($navItems as $url => $item): ?>
     <li>
-      <a href="<?php echo $url; ?>" 
-         class="nav-link<?php echo ($currentPage == $url) ? ' active' : ''; ?>"
-         <?php echo ($currentPage ==$url) ? ' aria-current="page"' : ''; ?>>
+      <a href="<?php echo $url; ?>" class="nav-link<?php echo ($currentPage == $url) ? $activeClassSuffix : '"'; ?>>
          <img src="<?php echo $item['icon']; ?>" alt="<?php echo $item['title']; ?>" />
       </a>
     </li>
