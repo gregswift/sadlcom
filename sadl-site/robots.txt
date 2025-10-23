@@ -1,0 +1,22 @@
+# robots.txt for https://sanantoniodisabilitylawyer.com/
+
+User-agent: *
+# Allow everything important
+Allow: /
+
+# Block unnecessary files
+Disallow: /cgi-bin/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.inc.php$
+
+# Allow Googlebot to access JS, CSS, and images
+Allow: /js/
+Allow: /styles/
+Allow: /images/
+
+# Sitemap reference (auto-discovery is fine, but explicit is better)
+Sitemap: https://sanantoniodisabilitylawyer.com/sitemap.xml
+
+# Optional: reduce crawl load if your site is small and rarely updated
+Crawl-delay: 10
