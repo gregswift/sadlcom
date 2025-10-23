@@ -33,9 +33,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <?php endforeach; ?>
     <!-- Phone number link -->
     <li class="call-now-btn">
-      <a href="tel:<?php echo $phoneNumber; ?>">
-        <i class="phone-icon"></i> <?php echo $phoneDisplay; ?>
-      </a>
+      <a href="tel:<?php echo $phoneNumber; ?>"><i class="phone-icon"></i><?php echo $phoneDisplay; ?></a>
     </li>
   </ul>
 </nav>
