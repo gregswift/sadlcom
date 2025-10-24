@@ -1,0 +1,51 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://sanantoniodisabilitylawyer.com/faqs.php#faqpage",
+  "url": "https://sanantoniodisabilitylawyer.com/faqs.php",
+  "publisher": {
+    "@id": "https://sanantoniodisabilitylawyer.com/#business"
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is eligible to receive disability benefits under Social Security?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anyone whose disability meets Social Security’s definition of disability may qualify. Under certain conditions, family members—including unmarried children under 18 (or 19 if still in high school), disabled adult children, and qualifying spouses—may also receive benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the disability requirements for an adult?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To be eligible, a person must be unable to do any substantial gainful work due to a physical or mental impairment expected to last at least 12 months or result in death. The Social Security Administration uses a five-step process to evaluate work activity, severity, listing status, previous work, and the ability to do other work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Social Security Disability and SSI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Social Security Disability Insurance (SSDI) is based on work history and contributions through payroll taxes. Supplemental Security Income (SSI) is funded by general tax revenues and provides benefits to people with disabilities who have limited income and resources."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I apply for Social Security disability benefits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can apply by calling your local Social Security Office or online at SSA.gov. A representative can schedule an appointment for you. Benefits typically begin after a six-month waiting period from the established disability date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a child qualify for disability benefits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A child may qualify for benefits under SSDI or SSI if they meet Social Security’s definition of disability. SSDI benefits depend on a parent’s work record, while SSI considers family income and resources. The child’s condition must cause severe limitations expected to last at least 12 months or result in death."
+      }
+    }
+  ]
+}

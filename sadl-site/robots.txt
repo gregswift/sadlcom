@@ -7,7 +7,7 @@ Allow: /
 # Block unnecessary files
 Disallow: /cgi-bin/
 Disallow: /node_modules/
-Disallow: /*.json$
+Disallow: /schemas/
 Disallow: /*.inc.php$
 
 # Allow Googlebot to access JS, CSS, and images
