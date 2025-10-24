@@ -1,10 +1,4 @@
-<?php
-// Page specific data
-$pageTitle = 'Texas Social Security Disability Attorney';
-
-//Load the site's config data
-require_once '../sadlcom-config.inc.php';
-?>
+<?php require_once 'config.inc.php'; ?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -13,7 +7,6 @@ require_once '../sadlcom-config.inc.php';
 <body>
 <section class="hero-page">
   <div class="pages-container">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <?php include 'navigation.inc.php'?>
     <div class="hero-page-layout">
       <div class="hero-page-left">
@@ -53,9 +46,7 @@ require_once '../sadlcom-config.inc.php';
     <div class="cases-covered-container">
       <h2 class="cases-covered-header">Types of Cases Handled</h2>
       <ul class="list-of-cases">
-        <li class="list-item">
-          Social Security Disability Insurance (Title II)
-        </li>
+        <li class="list-item">Social Security Disability Insurance (Title II)</li>
         <li class="list-item">Supplemental Security Income(Title XVI)</li>
         <li class="list-item">Children's SSI Cases</li>
         <li class="list-item">Widow's Benefits</li>

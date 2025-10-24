@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://sanantoniodisabilitylawyer.com/contact.php#contactpage",
+      "url": "https://sanantoniodisabilitylawyer.com/contact.php",
+      "name": "Contact Michael Archer, San Antonio Disability Lawyer",
+      "description": "Get in touch with Michael Archer to discuss your Social Security Disability claim. Call 210-699-4640 or visit our San Antonio office.",
+      "publisher": {
+        "@id": "https://sanantoniodisabilitylawyer.com/#business"
+      },
+      "mainEntity": {
+        "@type": "ContactPoint",
+        "telephone": "+1-210-699-4640",
+        "contactType": "Customer Service",
+        "areaServed": "US",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": ["LegalService", "Attorney"],
+      "@id": "https://sanantoniodisabilitylawyer.com/#business",
+      "name": "Michael Archer, San Antonio Disability Lawyer"
+    }
+  ]
+}

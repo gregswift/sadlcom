@@ -1,0 +1,122 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://sanantoniodisabilitylawyer.com/#michael-archer",
+      "name": "Michael Archer",
+      "jobTitle": "Attorney at Law",
+      "description": "Michael Archer is a San Antonio attorney practicing Social Security, Personal Injury, Civil Litigation, Family Law, Wills, Adoption, and Probate. Admitted to practice in Texas and multiple federal courts since 1976.",
+      "url": "https://sanantoniodisabilitylawyer.com/profile.php",
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Yoakum, Texas"
+      },
+      "birthDate": "1951-05-12",
+      "worksFor": {
+        "@id": "https://sanantoniodisabilitylawyer.com/#business"
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Texas",
+          "sameAs": "https://www.utexas.edu/",
+          "description": "B.A., 1973; Masters of Law Program, 1976"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "St. Mary’s University School of Law",
+          "sameAs": "https://law.stmarytx.edu/",
+          "description": "J.D., 1975"
+        }
+      ],
+      "knowsAbout": [
+        "Social Security Law",
+        "Personal Injury Law",
+        "Civil Litigation",
+        "Family Law",
+        "Wills and Probate",
+        "Adoption Law"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Bar Admission",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "State Bar of Texas"
+          },
+          "name": "Licensed Attorney, Texas (1976)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Court Admission",
+          "name": "U.S. District Court, Western District of Texas (1980)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Court Admission",
+          "name": "U.S. Court of Appeals, Fifth Circuit (1981)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Court Admission",
+          "name": "U.S. District Court, Northern District of Texas (1987)"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Court Admission",
+          "name": "U.S. Supreme Court (1987)"
+        }
+      ],
+      "memberOf": [
+        {
+          "@type": "Organization",
+          "name": "San Antonio Bar Association"
+        },
+        {
+          "@type": "Organization",
+          "name": "State Bar of Texas"
+        },
+        {
+          "@type": "Organization",
+          "name": "Social Security Lawyers"
+        },
+        {
+          "@type": "Organization",
+          "name": "National Organization of Social Security Claimant’s Representatives",
+          "description": "Sustaining Member, since 1985"
+        }
+      ],
+      "hasPart": [
+        {
+          "@type": "CreativeWork",
+          "name": "Texas Land Titles, Part II",
+          "datePublished": "1975",
+          "isPartOf": {
+            "@type": "PublicationIssue",
+            "name": "St. Mary’s Law Journal, Volume 7, No. 1",
+            "publisher": {
+              "@type": "Organization",
+              "name": "St. Mary’s University School of Law"
+            }
+          },
+          "author": {
+            "@id": "https://sanantoniodisabilitylawyer.com/#michael-archer"
+          },
+          "description": "Co-Author: Student Symposium, 'Texas Land Titles, Part II,' St. Mary’s Law Journal 58 (1975)."
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/michaelarcherlaw/",
+        "https://www.facebook.com/SanAntonioDisabilityLawyer"
+      ]
+    },
+    {
+      "@type": ["LegalService", "Attorney"],
+      "@id": "https://sanantoniodisabilitylawyer.com/#business",
+      "name": "Michael Archer, San Antonio Disability Lawyer",
+      "url": "https://sanantoniodisabilitylawyer.com/"
+    }
+  ]
+}

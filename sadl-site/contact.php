@@ -1,9 +1,5 @@
 <?php
-// Page specific data
-$pageTitle = 'Contact Us';
-
-//Load the site's config data
-require_once '../sadlcom-config.inc.php';
+require_once 'config.inc.php';
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -188,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function() {
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <?php include 'navigation.inc.php'; ?>
   <div class="page-title-container">
     <h1 class="page-title-header">Contact Us</h1>
