@@ -1,8 +1,6 @@
 .DS_store
 .env
 
-config.inc.php
-
 vendor/
 composer.lock
 
