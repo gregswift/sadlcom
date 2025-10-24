@@ -1,17 +1,10 @@
-<?php
-// Page specific data
-$pageTitle = 'Attorney Profile';
-
-//Load the site's config data
-require_once '../sadlcom-config.inc.php';
-?>
+<?php require_once 'config.inc.php'; ?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
 <?php include 'head.inc.php'; ?>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
   <?php include 'navigation.inc.php'; ?>
   <div class="page-title-container">
     <h1 class="page-title-header">Michael F. Archer, Attorney at Law</h1>

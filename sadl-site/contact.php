@@ -1,9 +1,5 @@
 <?php
-// Page specific data
-$pageTitle = 'Contact Us';
-
-//Load the site's config data
-require_once '../sadlcom-config.inc.php';
+require_once 'config.inc.php';
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function

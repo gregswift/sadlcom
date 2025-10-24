@@ -1,21 +1,5 @@
-<?php
-$navItems = [
-  'profile.php' => [
-    'title' => 'Profile',
-    'icon' => 'images/icons/attorney-profile-icon.svg'
-  ],
-  'faqs.php' => [
-    'title' => 'FAQs',
-    'icon' => 'images/icons/faq-icon.svg'
-  ],
-  'contact.php' => [
-    'title' => 'Contact',
-    'icon' => 'images/icons/contact-form-icon.svg'
-  ]
-];
-$activeClassSuffix = ' active" aria-current="page"';
-$currentPage = basename($_SERVER['PHP_SELF']);
-?>
+<?php $activeClassSuffix = ' active" aria-current="page"'; ?>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="site-header">
 <div class="logo-container">
   <a class="company-name" rel="home" href="index.php">San Antonio Disability Lawyer</a>
@@ -24,10 +8,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <!-- Desktop Navigation -->
 <nav id="navbar" class="nav">
   <ul class="navbar-container">
-<?php foreach ($navItems as $url => $item): ?>
+<?php foreach ($pageDetails as $url => $item): ?>
     <li class="nav-items<?php echo ($currentPage == $url) ? ' current-item' : ''; ?>">
       <a href="<?php echo $url; ?>" class="nav-link<?php echo ($currentPage == $url) ? $activeClassSuffix : '"'; ?>>
-         <?php echo $item['title']; ?>
+         <?php echo $item['navTitle']; ?>
       </a>
     </li>
 <?php endforeach; ?>
@@ -41,10 +25,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <!-- Mobile Navigation -->
 <nav class="mobile-nav-container">
   <ul class="mobile-container">
-<?php foreach ($navItems as $url => $item): ?>
+<?php foreach ($pageDetails as $url => $item): ?>
     <li>
       <a href="<?php echo $url; ?>" class="nav-link<?php echo ($currentPage == $url) ? $activeClassSuffix : '"'; ?>>
-         <img src="<?php echo $item['icon']; ?>" alt="<?php echo $item['title']; ?>" />
+         <img src="<?php echo $item['icon']; ?>" alt="<?php echo $item['navTitle']; ?>" />
       </a>
     </li>
 <?php endforeach; ?>

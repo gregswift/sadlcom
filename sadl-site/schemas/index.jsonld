@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org",
+  "@type": ["LegalService", "Attorney"],
+  "@id": "https://sanantoniodisabilitylawyer.com/#business",
+  "name": "Michael Archer, San Antonio Disability Lawyer",
+  "url": "https://sanantoniodisabilitylawyer.com/",
+  "telephone": "+1-210-699-4640",
+  "address": { ... },
+  "areaServed": "San Antonio, TX",
+  "sameAs": [ ... ]
+}
