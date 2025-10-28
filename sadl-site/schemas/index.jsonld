@@ -1,11 +1,56 @@
 {
   "@context": "https://schema.org",
-  "@type": ["LegalService", "Attorney"],
-  "@id": "https://sanantoniodisabilitylawyer.com/#business",
-  "name": "Michael Archer, San Antonio Disability Lawyer",
-  "url": "https://sanantoniodisabilitylawyer.com/",
-  "telephone": "+1-210-699-4640",
-  "address": { ... },
-  "areaServed": "San Antonio, TX",
-  "sameAs": [ ... ]
+  "@graph": [
+    {
+      "@type": ["LegalService", "Attorney"],
+      "@id": "https://sanantoniodisabilitylawyer.com/#business",
+      "name": "Michael Archer, San Antonio Disability Lawyer",
+      "url": "https://sanantoniodisabilitylawyer.com/",
+      "image": "https://sanantoniodisabilitylawyer.com/images/michael-archer.jpg",
+      "description": "San Antonio attorney Michael Archer helps clients secure Social Security and disability benefits across Texas.",
+      "telephone": "+1-210-699-4640",
+      "priceRange": "$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "300 E Ramsey Rd, Suite 305",
+        "addressLocality": "San Antonio",
+        "addressRegion": "TX",
+        "postalCode": "78216",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 29.5288,
+        "longitude": -98.4936
+      },
+      "areaServed": "San Antonio, TX",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "founder": {
+        "@id": "https://sanantoniodisabilitylawyer.com/#michael-archer"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/michael-archer-b560534",
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sanantoniodisabilitylawyer.com/#michael-archer",
+      "name": "Michael Archer",
+      "jobTitle": "Attorney at Law",
+      "worksFor": {
+        "@id": "https://sanantoniodisabilitylawyer.com/#business"
+      },
+      "url": "https://sanantoniodisabilitylawyer.com/profile.php",
+      "sameAs": [
+        "https://linkedin.com/in/michael-archer-b560534",
+      ]
+    }
+  ]
 }
