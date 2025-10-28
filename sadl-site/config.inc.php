@@ -14,7 +14,7 @@
       'navTitle'  => 'FAQs',
       'pageTitle' => 'Frequently Asked Questions',
       'icon'      => 'images/icons/faq-icon.svg',
-      'schema'    => '/schemas/faq.jsonld'
+      'schema'    => '/schemas/faqs.jsonld'
     ],
     'contact.php' => [
       'navTitle'  => 'Contact',
@@ -36,6 +36,9 @@
   $schemaFile  = $pageDetails[$currentPage]['schema'];
   $navTitle    = $pageDetails[$currentPage]['navTitle'];
   $icon        = $pageDetails[$currentPage]['icon'];
+
+  $metaTitle       = 'San Antonio Social Security Disability Lawyer | Michael Archer';
+  $metaDescription = 'Need help with a Social Security disability claim in San Antonio? Attorney Michael Archer fights for your SSDI/SSI benefits. Call 210-699-4640 for a free consultation.';
 
   $schema = file_get_contents(__DIR__ . $schemaFile);  
 ?>
