@@ -1,6 +1,6 @@
 <footer>
   <div class="footer-logo-container">
-    <a class="company-name" href="index.php">San Antonio Disability Lawyer</a>
+    <a class="company-name" href="index.php" rel="canonical">San Antonio Disability Lawyer</a>
     <p class="subheader-name">Michael F. Archer</p>
   </div>
   <p class="footer-item">
