@@ -1,12 +1,13 @@
 <?php
+  //Load the site's secret data
+  require_once '../sadlcom-config.inc.php';
+
   //Ensure that the non-www version of the site is the primary
   $requestedDomain = $_SERVER["SERVER_NAME"];
   if ($requestedDomain != $primaryDomain) {
    header( "HTTP/1.1 301 Moved Permanently" );
    header("location: https://" . $primaryDomain . $_SERVER['PHP_SELF']); // grab full request slugs, primarily to facilitate drafts
   }
-  //Load the site's secret data
-  require_once '../sadlcom-config.inc.php';
 
   //Set details of each page centrally so we can just look it up
   $pageDetails = [
