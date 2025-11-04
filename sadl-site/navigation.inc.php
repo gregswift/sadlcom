@@ -2,7 +2,7 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="site-header">
 <div class="logo-container">
-  <a class="company-name" rel="home" href="index.php">San Antonio Disability Lawyer</a>
+  <a class="company-name" rel="home" href="index.php" rel="canonical">San Antonio Disability Lawyer</a>
   <p class="subheader-name">Michael F. Archer</p>
 </div>
 <!-- Desktop Navigation -->
