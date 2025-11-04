@@ -11,6 +11,12 @@
 
   //Set details of each page centrally so we can just look it up
   $pageDetails = [
+    'index.php'   => [
+      'navTitle'  => '',
+      'pageTitle' => 'Texas Social Security Disability Attorney',
+      'icon'      => 'images/icons/home-page-icon.svg',
+      'schema'    => '/schemas/index.jsonld'
+    ],
     'profile.php' => [
       'navTitle'  => 'Profile',
       'pageTitle' => 'Michael F. Archer, Attorney at Law',
@@ -28,12 +34,6 @@
       'pageTitle' => 'Contact Us',
       'icon'      => 'images/icons/contact-form-icon.svg',
       'schema'    => '/schemas/contact.jsonld'
-    ],
-    'index.php'   => [
-      'navTitle'  => '',
-      'pageTitle' => 'Texas Social Security Disability Attorney',
-      'icon'      => '',
-      'schema'    => '/schemas/index.jsonld'
     ]
   ];
 
