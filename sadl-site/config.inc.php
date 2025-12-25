@@ -45,7 +45,7 @@
   $icon        = $pageDetails[$currentPage]['icon'];
 
   $metaTitle       = 'San Antonio Social Security Disability Lawyer | Michael Archer';
-  $metaDescription = 'Need help with a Social Security disability claim in San Antonio? Attorney Michael Archer fights for your SSDI/SSI benefits. Call 210-699-4640 for a free consultation.';
+  $metaDescription = 'Need help with a Social Security disability claim in San Antonio? Attorney Michael Archer fights for your SSDI/SSI benefits. Call 210-789–2205 for a free consultation.';
 
   $schema = file_get_contents(__DIR__ . $schemaFile);  
 ?>
